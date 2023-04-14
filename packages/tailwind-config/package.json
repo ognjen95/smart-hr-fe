@@ -1,0 +1,10 @@
+{
+  "name": "tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "devDependencies": {},
+  "dependencies": {
+    "daisyui": "^2.51.5"
+  }
+}

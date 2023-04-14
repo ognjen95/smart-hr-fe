@@ -1,0 +1,30 @@
+{
+  "name": "react-bundle",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "start": "turbo run start",
+    "format": "prettier --write \"**/*.{ts,tsx,md,yml,json}\"",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "prettier": "^2.8.7",
+    "turbo": "^1.8.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "packageManager": "yarn@1.22.19"
+}

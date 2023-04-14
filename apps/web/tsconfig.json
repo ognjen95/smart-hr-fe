@@ -1,0 +1,24 @@
+{
+  "extends": "tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~public/*": ["public/*"],
+      "~config/*": ["src/config/*"],
+      "~components/*": ["src/components/*"],
+      "~context/*": ["src/context/*"],
+      "~features/*": ["src/features/*"],
+      "~graphql-api": ["src/graphql-api"],
+      "~hoc/*": ["src/hoc/*"],
+      "~hooks/*": ["src/hooks/*"],
+      "~icons/*": ["src/icons/*"],
+      "~pages/*": ["src/pages/*"],
+      "~common/*": ["src/common/*"],
+      "~services/*": ["src/services/*"],
+      "~styles/*": ["src/styles/*"],
+      "~ui-components/*": ["src/ui-components/*"]
+    }
+  }
+}

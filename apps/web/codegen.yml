@@ -1,0 +1,29 @@
+overwrite: true
+schema:
+  - http://localhost:3001/graphql
+  - client-only-state.gql
+documents: src/**/.gql
+generates:
+  src/graphql-api/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - typescript-apollo-client-helpers
+      - named-operations-object
+      - fragment-matcher
+    config:
+      reactApolloVersion: 3
+      addDocBlocks: true
+      namingConvention:
+        enumValues: change-case-all#upperCase
+      strictScalars: true
+      scalars:
+        UUID: string
+        DateTime: Date
+        Date: Date
+        Decimal: number
+        Any: Record<string, unknown>
+  ./gql.schema.json:
+    plugins:
+      - introspection

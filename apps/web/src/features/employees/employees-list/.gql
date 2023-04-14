@@ -1,0 +1,19 @@
+query FindAllUsers($queryOptionsInput: QueryOptionsInput) {
+  findAllUsers(QueryOptionsInput: $queryOptionsInput) {
+    edges {
+      cursor
+      node {
+        email
+        employmentStatus
+        firstName
+        id
+        lastName
+      }
+    }
+    pageInfo {
+      endCursor
+      startCursor
+    }
+    totalCount
+  }
+}

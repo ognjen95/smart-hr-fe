@@ -1,0 +1,9 @@
+query FindUserById($findUserByIdId: String!) {
+  findUserById(id: $findUserByIdId) {
+    email
+    employmentStatus
+    firstName
+    id
+    lastName
+  }
+}
