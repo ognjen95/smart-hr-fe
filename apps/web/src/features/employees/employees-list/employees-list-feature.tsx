@@ -1,7 +1,7 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
 import { FC } from 'react'
-import { Button, DrawerRight, Input, Paper, Table } from 'ui-components'
+import { Button, Input, Paper, Table } from 'ui-components'
 
 import { EMPLOYMENT_BADGE_COLOR_MAPPER } from '~common/constants/colors';
 import { ColorMapper } from '~common/types/types';
@@ -31,6 +31,7 @@ const columns = [
     header: 'Employment Status',
   }),
 ]
+
 type EmployeesListFeatureProps = {
   toggleRightDrawer: () => void
 }
@@ -51,13 +52,13 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
   return (
     <>
       {/* Employee Type Header Cards */}
-      < EmployeeCardTypeList />
+      <EmployeeCardTypeList />
       {/* Employees Table */}
       < div className='mt-2 rounded-xl' >
         <h1 className='mb-4 font-bold text-xl'>Employees Table</h1>
         <Paper noPadding>
-          <div className="flex justify-between items-center">
-            <div className="flex justify-start items-center gap-2 px-3 pt-2">
+          <div className="flex justify-between items-center px-3 py-1">
+            <div className="flex justify-start items-center gap-2">
               <div className='w-64'>
                 <Input
                   size='small'
@@ -69,9 +70,11 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
               {/* Filters and Sorting */}
               <FIlterAndSortForm form={form} />
             </div>
-            <div className='flex items-center gap-8 mr-5'>
+            <div className='flex items-center gap-8'>
               {/* <h1 className='mr-5'>{employeesList.length} of {totalCount} employees</h1> */}
-              <Button onClick={() => toggleRightDrawer()}>Create new  Employee</Button>
+              <Button size='small' onClick={() => toggleRightDrawer()}>
+                Create new  Employee
+              </Button>
             </div>
           </div>
           {/* TableList */}

@@ -8,9 +8,9 @@ const VARIANT_CLASS_MAPPER: Record<ButtonVariant, string> = {
 };
 
 const SIZE_CLASS_MAPPER: Record<ButtonSize, string> = {
-  small: "daisy-btn-small",
-  medium: "daisy-btn-normal",
-  large: "daisy-btn-large",
+  small: "daisy-btn-sm",
+  medium: "",
+  large: "daisy-btn-lg",
 };
 
 const COLOR_CLASS_MAPPER: Record<ButtonColor, string> = {

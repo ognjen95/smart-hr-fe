@@ -5,7 +5,7 @@ import EmployeeProfileFeature from '~features/employees/employe-profile/employee
 import DashboardLayout from '../../../../components/layouts/dashboard-layout'
 
 const EmployeeProfilePage: NextPage = () => (
-  <DashboardLayout>
+  <DashboardLayout toggleRightDrawer={() => { }}>
     <EmployeeProfileFeature />
   </DashboardLayout>
 )

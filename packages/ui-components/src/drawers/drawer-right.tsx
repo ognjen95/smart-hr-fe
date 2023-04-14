@@ -36,7 +36,7 @@ type DrawerContentProps = {
 
 export const DrawerContent: FCWithChildren<DrawerContentProps> = ({ title, actionButtons, children }) => (
   <div className="flex flex-col overflow-y-auto">
-    <div className="flex justify-start absolute top-0 right-0 left-0 p-4 border-primary bg-primary-focus border-b-2 gap-4 z-50">
+    <div className="flex justify-start absolute top-0 right-0 left-0 p-4 border-primary bg-primary-focus border-b-2 gap-4">
       <h1 className="text-2xl font-bold">{title}</h1>
     </div>
     <div className="p-4 mb-20 mt-16">

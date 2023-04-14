@@ -23,7 +23,7 @@ const MyApp = ({
   return (
     <ApolloProvider client={apolloClient}>
       <ErrorBoundary fallback={<ErrorFallback />}>
-        <>
+        <div data-theme='dark' className="bg-base-200" id='theme-wrapper'>
           <Component {...pageProps} />
           <ToastContainer
             position="top-center"
@@ -34,10 +34,10 @@ const MyApp = ({
             theme="colored"
             toastStyle={{
               borderRadius: ".5rem",
-              minWidth: '350px'
+              minWidth: '370px'
             }}
           />
-        </>
+        </div>
       </ErrorBoundary>
     </ApolloProvider>
   );

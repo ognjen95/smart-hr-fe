@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { useEffect } from "react";
 
 import { POSITION_CLASS_MAPPER, WIDTH_CLASS_MAPPER } from "./constants";
 import { FCWithChildren } from "../common/types";

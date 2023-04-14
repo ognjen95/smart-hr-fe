@@ -12,7 +12,7 @@ export type NavbarProps = {
 };
 
 const Navbar: FC<NavbarProps  > = ({ navItems, logo, showSearch = true }) => (
-  <div className="daisy-navbar bg-base-100">
+  <div className="daisy-navbar bg-base-100 rounded-xl mb-4">
     <div className="daisy-navbar-end">
       <a className="daisy-btn daisy-btn-ghost normal-case text-xl">daisyUI</a>
     </div>

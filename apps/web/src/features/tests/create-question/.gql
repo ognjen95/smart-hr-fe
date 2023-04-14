@@ -1,0 +1,14 @@
+mutation CreateQuestion($createQuestionInput: CreateQuestionInput!) {
+  createQuestion(createQuestionInput: $createQuestionInput) {
+    id
+    points
+    text
+    questionGroup
+    answers {
+      answered
+      id
+      isCorrect
+      text
+    }
+  }
+}

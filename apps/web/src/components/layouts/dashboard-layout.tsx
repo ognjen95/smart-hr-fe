@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC, ReactNode, useState } from 'react'
 import { DrawerRight, Navbar, SideMenu } from 'ui-components'
+import { FCWithChildren } from 'ui-components/src/common/types'
 
 import { Icon } from '../../../dummy-data/data'
 
@@ -11,7 +12,7 @@ type DashboardLayoutProps = {
   toggleRightDrawer: () => void
 }
 
-const DashboardLayout: FC<DashboardLayoutProps> = ({ children, showRightDrawer = false, rightDrawerComponent, toggleRightDrawer }) => {
+const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, showRightDrawer = false, rightDrawerComponent, toggleRightDrawer }) => {
   const { push, asPath } = useRouter()
 
   const SIDE_MENU_DATA = [

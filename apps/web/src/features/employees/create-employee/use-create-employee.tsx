@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 
 import useForm from '~hooks/use-form'
-import useModal from '~hooks/use-modal'
+import useToggle from '~hooks/use-toggle'
 
 import { DEFAULT_VALUES, VALIDATION_SCHEMA } from './constants'
 import { CreateEmployeeFormModel, UseCreateUser, UseCreateUserReturn } from './types'
@@ -10,7 +10,7 @@ import { useCreateUserMutation } from '~graphql-api'
 
 
 const useCreateEmployee: UseCreateUser = (): UseCreateUserReturn => {
-  const { isOpen, open, close } = useModal()
+  const { isOpen, open, close, toggle } = useToggle()
   const form = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: VALIDATION_SCHEMA
@@ -43,8 +43,9 @@ const useCreateEmployee: UseCreateUser = (): UseCreateUserReturn => {
     })
   }
 
-  const handleOpen = () => {
-    if (form.formState.isValid) {
+  const handleOpen = async () => {
+    const isValid = await form.trigger()
+    if (isValid) {
       open()
     }
   }
@@ -55,7 +56,8 @@ const useCreateEmployee: UseCreateUser = (): UseCreateUserReturn => {
     modal: {
       open: handleOpen,
       isOpen,
-      close
+      close,
+      toggle
     },
   }
 }

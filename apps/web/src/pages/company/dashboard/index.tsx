@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { BarsChart } from 'ui-components'
+import { BarsChart, Paper } from 'ui-components'
 
 import DashboardLayout from '../../../components/layouts/dashboard-layout'
 import EmployeeStats from '../../../components/stats/employee-stats'
@@ -23,11 +23,15 @@ export const data = {
 };
 
 const DashboardPage: NextPage = () => (
-  <DashboardLayout>
-    <EmployeeStats />
-    <div className='h-[450px] overflow-hidden mt-5 w-full border-2 border-primary p-5 rounded-2xl flex items-center justify-center'>
-      <BarsChart data={data} />
-    </div>
+  <DashboardLayout toggleRightDrawer={() => {}}>
+    <>
+      <EmployeeStats />
+      <Paper>
+        <div className='h-[450px] overflow-hidden w-full p-5 flex items-center justify-center'>
+          <BarsChart data={data} />
+        </div>
+      </Paper>
+    </>
   </DashboardLayout>
 )
 

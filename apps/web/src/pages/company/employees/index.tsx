@@ -1,24 +1,21 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
 
 import DashboardLayout from '~components/layouts/dashboard-layout';
 import CreateEmployeeFeature from '~features/employees/create-employee/create-employee-feature';
 import EmployeesListFeature from '~features/employees/employees-list/employees-list-feature';
+import useToggle from '~hooks/use-toggle';
 
 
 const EmployeesPage: NextPage = () => {
-  const [isRightDrawerOpen, setIsRightDrawerOpen] = useState(false)
-  const toggleRightDrawer = () => setIsRightDrawerOpen((prev) => !prev)
+  const { isOpen, toggle} = useToggle()
 
   return (
     <DashboardLayout
-      showRightDrawer={isRightDrawerOpen}
-      toggleRightDrawer={toggleRightDrawer}
-      rightDrawerComponent={
-        <CreateEmployeeFeature toggleRightDrawer={toggleRightDrawer} />
-      }
+      showRightDrawer={isOpen}
+      toggleRightDrawer={toggle}
+      rightDrawerComponent={<CreateEmployeeFeature toggleRightDrawer={toggle} />}
     >
-      <EmployeesListFeature toggleRightDrawer={toggleRightDrawer} />
+      <EmployeesListFeature toggleRightDrawer={toggle} />
     </DashboardLayout>
   )
 }

@@ -1,5 +1,7 @@
 import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
+import { UseToggleReturn } from '~hooks/use-toggle';
+
 export type CreateEmployeeFormModel = {
   firstName: string;
   lastName: string;
@@ -13,11 +15,7 @@ export type UseCreateUserReturn = {
   form: UseFormReturn<CreateEmployeeFormModel>;
   onSubmit: SubmitHandler<CreateEmployeeFormModel>;
   isLoading?: boolean;
-  modal: {
-    open: () => void;
-    close: () => void;
-    isOpen: boolean;
-  };
+  modal: UseToggleReturn;
 };
 
 export type UseCreateUser = () => UseCreateUserReturn;
