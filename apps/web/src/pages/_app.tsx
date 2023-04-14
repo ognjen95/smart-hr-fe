@@ -2,8 +2,9 @@ import { ApolloProvider } from "@apollo/client";
 import type { AppInitialProps } from "next/app";
 import React, { ComponentType } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
+import 'react-toastify/dist/ReactToastify.css'
 import "../styles/global.css";
 import createApolloClient from "~config/apollo-client";
 
@@ -22,17 +23,21 @@ const MyApp = ({
   return (
     <ApolloProvider client={apolloClient}>
       <ErrorBoundary fallback={<ErrorFallback />}>
-        <div data-theme="dark" id="theme-wrapper">
+        <>
           <Component {...pageProps} />
-          {/* <ToastContainer
-            position="bottom-center"
+          <ToastContainer
+            position="top-center"
             autoClose={3000}
-            hideProgressBar
             newestOnTop
             closeOnClick
             pauseOnHover
-          /> */}
-        </div>
+            theme="colored"
+            toastStyle={{
+              borderRadius: ".5rem",
+              minWidth: '350px'
+            }}
+          />
+        </>
       </ErrorBoundary>
     </ApolloProvider>
   );

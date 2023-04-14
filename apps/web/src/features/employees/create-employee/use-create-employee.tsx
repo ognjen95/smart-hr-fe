@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 import useForm from '~hooks/use-form'
 import useModal from '~hooks/use-modal'
 
@@ -20,9 +22,13 @@ const useCreateEmployee: UseCreateUser = (): UseCreateUserReturn => {
 
   const onSubmit = (data: CreateEmployeeFormModel) => {
     createUser({
-      onError: ({ graphQLErrors: [{ message }] }) => console.log(message),
+      onError: () => {
+        close()
+        toast.error("There was problem with creating user")
+      },
       onCompleted: () => {
         form.reset()
+        toast.success("User successfully created")
         close()
       },
       variables: {
@@ -37,11 +43,17 @@ const useCreateEmployee: UseCreateUser = (): UseCreateUserReturn => {
     })
   }
 
+  const handleOpen = () => {
+    if (form.formState.isValid) {
+      open()
+    }
+  }
+
   return {
     form,
     onSubmit,
     modal: {
-      open,
+      open: handleOpen,
       isOpen,
       close
     },
