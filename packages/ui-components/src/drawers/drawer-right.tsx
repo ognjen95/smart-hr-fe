@@ -14,7 +14,7 @@ const DrawerRight: FCWithChildren<DrawerRightProps> = ({
   children,
 }) => (
   <div className="daisy-drawer daisy-drawer-end">
-    <input id="my-drawer-4" type="checkbox" checked={isOpen} className="daisy-drawer-toggle" />
+    <input id="my-drawer-4" type="checkbox" onChange={() => { }} checked={isOpen} className="daisy-drawer-toggle" />
     <div className="daisy-drawer-content">
       {children}
     </div>
@@ -40,7 +40,7 @@ export const DrawerContent: FCWithChildren<DrawerContentProps> = ({ title, actio
       <h1 className="text-2xl font-bold">{title}</h1>
     </div>
     <div className="p-4 mb-20 mt-16">
-    {children}
+      {children}
     </div>
     <div className="flex justify-end absolute bottom-0 right-0 left-0 p-4 border-primary bg-primary-focus border-t-2 gap-4 z-50">
       {actionButtons}

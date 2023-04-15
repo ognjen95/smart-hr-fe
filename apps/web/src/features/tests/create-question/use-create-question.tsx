@@ -1,3 +1,4 @@
+import { useFieldArray } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
 import useForm from '~hooks/use-form'
@@ -15,6 +16,11 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
   const form = useForm({
     defaultValues: DEFAULT_VALUES,
     validationSchema: VALIDATION_SCHEMA
+  })
+
+  const fieldArray = useFieldArray({
+    control: form.control,
+    name: 'answers'
   })
 
   const [createQuestion] = useCreateQuestionMutation()
@@ -51,6 +57,7 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
   return {
     form,
     onSubmit,
+    fieldArray,
     modal: {
       open: handleOpen,
       isOpen,

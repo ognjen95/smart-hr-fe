@@ -51,7 +51,7 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, showR
   return (
     <DrawerRight isOpen={showRightDrawer} component={rightDrawerComponent}>
       <div className="daisy-drawer daisy-drawer-mobile">
-        <input id="my-drawer-2" type="checkbox" checked={isOpen} className="daisy-drawer-toggle" />
+        <input id="my-drawer-2" type="checkbox" checked={isOpen} onChange={() => { }} className="daisy-drawer-toggle" />
         <div className="daisy-drawer-content flex flex-col rounded-lg px-5">
           <div className='my-2'>
             <Navbar navItems={[]} logo={undefined} />

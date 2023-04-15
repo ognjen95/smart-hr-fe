@@ -29,3 +29,17 @@ export const VALIDATION_SCHEMA: ObjectSchema<CreateQuestionFormModel> =
       )
       .required('This field is required'),
   });
+
+export const POINTS_OPTIONS = [
+  { label: 'Number of points for question', value: ''},
+  { label: '1', value: '1' },
+  { label: '2', value: '2' },
+  { label: '3', value: '3' },
+];
+
+export const QUESTION_GROUPS_OPTIONS = [
+  { label: 'Pick group', value: '' },
+  { label: 'Javascript', value: 'javascript' },
+  { label: '.NET', value: '.net' },
+  { label: 'Java', value: 'java' },
+];

@@ -38,3 +38,6 @@ export * from './dropdown';
 
 export { default as DrawerRight } from './drawers';
 export * from './drawers';
+
+export { default as Select } from './select';
+export * from './select';

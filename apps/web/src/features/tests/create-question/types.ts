@@ -1,4 +1,8 @@
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import {
+  SubmitHandler,
+  UseFieldArrayReturn,
+  UseFormReturn,
+} from 'react-hook-form';
 
 import { UseToggleReturn } from '~hooks/use-toggle';
 
@@ -20,6 +24,7 @@ export type CreateQuestionFormModel = {
 
 export type UseCreateQuestionReturn = {
   form: UseFormReturn<CreateQuestionFormModel>;
+  fieldArray: UseFieldArrayReturn<CreateQuestionFormModel>;
   onSubmit: SubmitHandler<CreateQuestionFormModel>;
   isLoading?: boolean;
   modal: UseToggleReturn;
