@@ -1,17 +1,14 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
 import { FC, memo } from 'react'
-import { Button, DrawerRight, Input, Paper, Table } from 'ui-components'
+import { Button, Input, Paper, Table } from 'ui-components'
 
 import { EMPLOYMENT_BADGE_COLOR_MAPPER } from '~common/constants/colors';
 import { ColorMapper } from '~common/types/types';
-import CreateQuestionFeature from '~features/tests/create-question/create-question-feature';
-import useToggle from '~hooks/use-toggle';
 
 import FIlterAndSortForm from './employee-list-form/employee-list-filters-form';
 import EmployeeCardTypeList from './employee-type-card-list';
 import useEmployeeList from './use-employees-list';
-import CreateEmployeeFeature from '../create-employee/create-employee-feature';
 
 import { User } from '~graphql-api';
 

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { ReactNode, memo, useMemo, useState } from 'react'
+import { ReactNode, memo, useMemo } from 'react'
 import { Navbar, SideMenu } from 'ui-components'
 import { FCWithChildren } from 'ui-components/src/common/types'
 
@@ -43,11 +43,9 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, }) =>
     },
   ], [asPath, push])
 
-  const [isOpen, setIsOpen] = useState(true);
-
   return (
     <div className="daisy-drawer daisy-drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" checked={isOpen} onChange={() => { }} className="daisy-drawer-toggle" />
+      <input id="my-drawer-2" type="checkbox" checked onChange={() => { }} className="daisy-drawer-toggle" />
       <div className="daisy-drawer-content flex flex-col rounded-lg px-5">
         <div className='my-2'>
           <Navbar navItems={[]} logo={undefined} />
