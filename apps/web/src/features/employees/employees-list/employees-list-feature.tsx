@@ -1,14 +1,17 @@
 import { createColumnHelper } from '@tanstack/react-table';
 import { useRouter } from 'next/router';
-import { FC } from 'react'
-import { Button, Input, Paper, Table } from 'ui-components'
+import { FC, memo } from 'react'
+import { Button, DrawerRight, Input, Paper, Table } from 'ui-components'
 
 import { EMPLOYMENT_BADGE_COLOR_MAPPER } from '~common/constants/colors';
 import { ColorMapper } from '~common/types/types';
+import CreateQuestionFeature from '~features/tests/create-question/create-question-feature';
+import useToggle from '~hooks/use-toggle';
 
 import FIlterAndSortForm from './employee-list-form/employee-list-filters-form';
 import EmployeeCardTypeList from './employee-type-card-list';
 import useEmployeeList from './use-employees-list';
+import CreateEmployeeFeature from '../create-employee/create-employee-feature';
 
 import { User } from '~graphql-api';
 
@@ -54,7 +57,7 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
       {/* Employee Type Header Cards */}
       <EmployeeCardTypeList />
       {/* Employees Table */}
-      < div className='mt-2 rounded-xl' >
+      <div className='mt-2 rounded-xl' >
         <h1 className='mb-4 font-bold text-xl'>Employees Table</h1>
         <Paper noPadding>
           <div className="flex justify-between items-center px-3 py-1">
@@ -96,4 +99,4 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
 }
 
 
-export default EmployeesListFeature
+export default memo(EmployeesListFeature)

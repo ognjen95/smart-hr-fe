@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 import { CARD_COLOR_MAPPER } from '~common/constants/colors'
 
@@ -9,9 +9,8 @@ type EmployeeTypeCardProps = {
     onClick?: () => void
 }
 
-
 const EmployeeTypeCard: FC<EmployeeTypeCardProps> = ({ title, description, color = 'primary', onClick }) => (
-    <div className={`
+        <div className={`
         daisy-card 
         glass
         text-primary-content
@@ -23,12 +22,12 @@ const EmployeeTypeCard: FC<EmployeeTypeCardProps> = ({ title, description, color
         shadow-neutral-focus
         ${CARD_COLOR_MAPPER[color]} 
         `}
-        onClick={() => { if (onClick) onClick() }}
-    >
-        <div className="daisy-card-body">
-            <h2 className="daisy-card-title text-2xl">{title}</h2>
-            <p>{description}</p>
+            onClick={() => { if (onClick) onClick() }}
+        >
+            <div className="daisy-card-body">
+                <h2 className="daisy-card-title text-2xl">{title}</h2>
+                <p>{description}</p>
+            </div>
         </div>
-    </div>
-)
-export default EmployeeTypeCard
+    )
+export default memo(EmployeeTypeCard)

@@ -1,0 +1,23 @@
+query FindAllQuestion {
+  findAllQuestion {
+    edges {
+      cursor
+      node {
+        answers {
+          answered
+          id
+          isCorrect
+          text
+        }
+        id
+        points
+        questionGroup
+        text
+      }
+    }
+    pageInfo {
+      endCursor
+    }
+    totalCount
+  }
+}

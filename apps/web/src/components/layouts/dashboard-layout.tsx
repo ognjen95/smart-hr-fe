@@ -1,21 +1,18 @@
 import { useRouter } from 'next/router'
-import { FC, ReactNode, useState } from 'react'
-import { DrawerRight, Navbar, SideMenu } from 'ui-components'
+import { ReactNode, memo, useMemo, useState } from 'react'
+import { Navbar, SideMenu } from 'ui-components'
 import { FCWithChildren } from 'ui-components/src/common/types'
 
 import { Icon } from '../../../dummy-data/data'
 
 type DashboardLayoutProps = {
   children: ReactNode,
-  showRightDrawer?: boolean
-  rightDrawerComponent?: ReactNode
-  toggleRightDrawer: () => void
 }
 
-const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, showRightDrawer = false, rightDrawerComponent, toggleRightDrawer }) => {
+const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, }) => {
   const { push, asPath } = useRouter()
 
-  const SIDE_MENU_DATA = [
+  const SIDE_MENU_DATA = useMemo(() => [
     {
       name: 'Dashboard',
       icon: <Icon />,
@@ -32,7 +29,7 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, showR
       name: 'Tests',
       icon: <Icon />,
       onClick: () => { push('/company/tests') },
-      isActive: asPath === '/company/tests'
+      isActive: asPath.includes('/company/tests')
     },
     {
       name: 'Documents',
@@ -44,24 +41,22 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, showR
       icon: <Icon />,
       onClick: () => { },
     },
-  ];
+  ], [asPath, push])
 
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <DrawerRight isOpen={showRightDrawer} component={rightDrawerComponent}>
-      <div className="daisy-drawer daisy-drawer-mobile">
-        <input id="my-drawer-2" type="checkbox" checked={isOpen} onChange={() => { }} className="daisy-drawer-toggle" />
-        <div className="daisy-drawer-content flex flex-col rounded-lg px-5">
-          <div className='my-2'>
-            <Navbar navItems={[]} logo={undefined} />
-          </div>
-          {children}
+    <div className="daisy-drawer daisy-drawer-mobile">
+      <input id="my-drawer-2" type="checkbox" checked={isOpen} onChange={() => { }} className="daisy-drawer-toggle" />
+      <div className="daisy-drawer-content flex flex-col rounded-lg px-5">
+        <div className='my-2'>
+          <Navbar navItems={[]} logo={undefined} />
         </div>
-        <SideMenu items={SIDE_MENU_DATA} />
+        {children}
       </div>
-    </DrawerRight>
+      <SideMenu items={SIDE_MENU_DATA} />
+    </div>
   )
 }
 
-export default DashboardLayout
+export default memo(DashboardLayout)

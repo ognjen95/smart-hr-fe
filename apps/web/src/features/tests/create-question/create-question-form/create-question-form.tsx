@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form'
 import { generateId } from 'src/helpers/generateId'
 import { Button } from 'ui-components'
@@ -68,4 +68,4 @@ const CreateQuestionForm: FC<CreateQuestionFormProps> = ({ form, fieldArray }) =
   </Form >
 )
 
-export default CreateQuestionForm
+export default memo(CreateQuestionForm)

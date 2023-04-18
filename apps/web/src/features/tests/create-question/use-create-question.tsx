@@ -1,31 +1,21 @@
-import { useFieldArray } from 'react-hook-form'
+import { useCallback } from 'react'
 import { toast } from 'react-toastify'
 
-import useForm from '~hooks/use-form'
 import useToggle from '~hooks/use-toggle'
 
-import { DEFAULT_VALUES, VALIDATION_SCHEMA } from './constants'
+import useCreateQuestionForm from './create-question-form/use-create-question-form'
 import { CreateQuestionFormModel, UseCreateQuestion, UseCreateQuestionReturn } from './types'
 
 import { useCreateQuestionMutation } from '~graphql-api'
 
 
-
 const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
   const { isOpen, open, close, toggle } = useToggle()
-  const form = useForm({
-    defaultValues: DEFAULT_VALUES,
-    validationSchema: VALIDATION_SCHEMA
-  })
 
-  const fieldArray = useFieldArray({
-    control: form.control,
-    name: 'answers'
-  })
-
+  const {form, fieldArray} = useCreateQuestionForm()
   const [createQuestion] = useCreateQuestionMutation()
 
-  const onSubmit = (data: CreateQuestionFormModel) => {
+  const onSubmit = useCallback((data: CreateQuestionFormModel) => {
     createQuestion({
       onError: ({ graphQLErrors: [{ message }] }) => {
         close()
@@ -45,14 +35,14 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
         }
       }
     })
-  }
+  }, [close, createQuestion, form])
 
-  const handleOpen = async () => {
+  const handleOpen = useCallback(async () => {
     const isValid = await form.trigger()
     if (isValid) {
       open()
     }
-  }
+  }, [form, open])
 
   return {
     form,

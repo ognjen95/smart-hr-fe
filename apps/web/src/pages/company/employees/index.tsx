@@ -7,15 +7,17 @@ import useToggle from '~hooks/use-toggle';
 
 
 const EmployeesPage: NextPage = () => {
-  const { isOpen, toggle} = useToggle()
+  const { isOpen, toggle } = useToggle()
+  const handleToggle = () => {
+    toggle()
+  }
 
   return (
-    <DashboardLayout
-      showRightDrawer={isOpen}
-      toggleRightDrawer={toggle}
-      rightDrawerComponent={<CreateEmployeeFeature toggleRightDrawer={toggle} />}
-    >
-      <EmployeesListFeature toggleRightDrawer={toggle} />
+    <DashboardLayout>
+      <>
+        <EmployeesListFeature toggleRightDrawer={handleToggle} />
+        <CreateEmployeeFeature isOpen={isOpen} toggleRightDrawer={handleToggle} />
+      </>
     </DashboardLayout>
   )
 }

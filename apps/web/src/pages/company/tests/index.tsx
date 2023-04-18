@@ -1,12 +1,12 @@
 import { TEST_CARDS } from 'dummy-data/employee-data';
-import { useState } from 'react';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { Button } from 'ui-components';
 
-import EmployeeTypeCard from '~components/cards/employe-type-card/employee-type-card';
+import EmployeeTypeCard from '~components/cards/employee-type-card/employee-type-card';
 import { GLassCardProps } from '~components/cards/glass-card/glass-card';
 import CollectionSection from '~components/collection-section/collection-section';
 import DashboardLayout from '~components/layouts/dashboard-layout';
-import CreateQuestionModal from '~components/questions/create-question/create-question-modal';
 import CreateQuestionFeature from '~features/tests/create-question/create-question-feature';
 import useToggle from '~hooks/use-toggle';
 
@@ -40,17 +40,16 @@ const CARDS: GLassCardProps[] = [
   },
 ]
 
-const TestsPage = () => {
-  // const [isOpen, setIsOpen] = useState(false)
+const TestsPage: NextPage = () => {
+  const { push, asPath } = useRouter()
   const { isOpen, toggle } = useToggle()
+  const handleToggle = () => {
+    toggle()
+  }
 
   return (
-    <>
-      <DashboardLayout
-        showRightDrawer={isOpen}
-        toggleRightDrawer={toggle}
-        rightDrawerComponent={<CreateQuestionFeature toggleRightDrawer={toggle} />}
-      >
+    <DashboardLayout>
+      <>
         <div className="grid grid-cols-3 gap-4 mb-5">
           {TEST_CARDS.map((card) => (
             <EmployeeTypeCard key={card.title} {...card} onClick={() => { }} />
@@ -61,20 +60,23 @@ const TestsPage = () => {
           title='Tests'
           data={CARDS}
           buttons={[
-            <Button key={1} size='small' variant='text' onClick={() => { toggle() }}>Create New Question</Button>,
-            <Button key={2} size='small' variant='text'>See All</Button>
+            <Button key={1} size='small' variant='text' onClick={() => { }}>Create New Test</Button>,
+            <Button key={2} size='small' variant='text' onClick={() => { }}>See All</Button>
           ]}
         />
         {/* Question Pool */}
         <CollectionSection
-          buttons={[<Button key={2} size='small' variant='text'>See All</Button>]}
+          buttons={[
+            <Button key={3} size='small' variant='text' onClick={handleToggle}>Create New Question</Button>,
+            <Button key={4} size='small' variant='text' onClick={() => push(`${asPath}/questions`)}>See All</Button>
+          ]}
           data={CARDS}
           title='Question Pools'
         />
-      </DashboardLayout>
-      {/* Create New Question Modal */}
-      {/* <CreateQuestionModal isOpen={isOpen} onClose={() => { setIsOpen(false) }} /> */}
-    </>
+
+        <CreateQuestionFeature isOpen={isOpen} toggleRightDrawer={handleToggle} />
+      </>
+    </DashboardLayout>
   )
 }
 

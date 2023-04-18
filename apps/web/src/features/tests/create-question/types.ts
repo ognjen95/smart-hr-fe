@@ -30,4 +30,11 @@ export type UseCreateQuestionReturn = {
   modal: UseToggleReturn;
 };
 
+export type CreateQuestionFormReturn = {
+  form: UseFormReturn<CreateQuestionFormModel>;
+  fieldArray: UseFieldArrayReturn<CreateQuestionFormModel>;
+};
+
+export type CreateQuestionForm = () => CreateQuestionFormReturn;
+
 export type UseCreateQuestion = () => UseCreateQuestionReturn;

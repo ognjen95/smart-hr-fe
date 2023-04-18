@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import { memo, useEffect, useState } from "react";
+import { Portal } from 'react-portal';
 
 import { POSITION_CLASS_MAPPER, WIDTH_CLASS_MAPPER } from "./constants";
 import { FCWithChildren } from "../common/types";
@@ -29,35 +31,53 @@ const Modal: FCWithChildren<ModalProps> = ({
   leftButton: { buttonText: leftButtonText, onClick: leftButtonOnClick } = {},
   position = "middle",
   children,
-}) =>
-(
-  <div
-    className={clsx(
-      "daisy-modal",
-      [{ "daisy-modal-open": isOpen }],
-      POSITION_CLASS_MAPPER[position]
-    )}
-  >
-    <div className={clsx("daisy-modal-box", WIDTH_CLASS_MAPPER[size], 'bg-primary')}>
-      <h3 className={clsx("font-bold", "text-2xl", "mb-4 text-accent-content")}> {title}</h3>
-      {description && <p className="daisy-py-4 text-accent-content">{description}</p>}
-      {children}
-      <div className="daisy-modal-action">
-        {leftButtonText && (
-          <button type="button" className="daisy-btn daisy-btn-ghost text-accent-content rounded-xl" onClick={leftButtonOnClick}>
-            {leftButtonText}
-          </button>
-        )}
-        <button
-          type="button"
-          className="daisy-btn border-accent-content rounded-xl bg-accent-content text-neutral hover:daisy-btn-ghost hover:text-accent-content"
-          onClick={rightButtonOnClick}
-        >
-          {rightButtonText}
-        </button>
-      </div>
-    </div>
-  </div>
-)
+}) => {
+  const [ref, setRef] = useState<HTMLElement | null>(null)
 
-export default Modal;
+  useEffect(() => {
+    const body = document.querySelector('body')
+    setRef(body)
+
+    return () => {
+      setRef(null)
+    }
+  }, [])
+
+  return (
+    <div>
+      {isOpen && ref ?
+        <Portal node={ref}>
+          <div
+            className={clsx(
+              "daisy-modal",
+              [{ "daisy-modal-open": isOpen }],
+              POSITION_CLASS_MAPPER[position]
+            )}
+          >
+            <div className={clsx("daisy-modal-box", WIDTH_CLASS_MAPPER[size], 'bg-primary')}>
+              <h3 className={clsx("font-bold", "text-2xl", "mb-4 text-accent-content")}> {title}</h3>
+              {description && <p className="daisy-py-4 text-accent-content">{description}</p>}
+              {children}
+              <div className="daisy-modal-action">
+                {leftButtonText && (
+                  <button type="button" className="daisy-btn daisy-btn-ghost text-accent-content rounded-xl" onClick={leftButtonOnClick}>
+                    {leftButtonText}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="daisy-btn border-accent-content rounded-xl bg-accent-content text-neutral hover:daisy-btn-ghost hover:text-accent-content"
+                  onClick={rightButtonOnClick}
+                >
+                  {rightButtonText}
+                </button>
+              </div>
+            </div>
+          </div>
+        </Portal> : null
+      }
+    </div>
+  )
+}
+
+export default memo(Modal);

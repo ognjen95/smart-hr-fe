@@ -1,4 +1,4 @@
-import EmployeeTypeCard from '~components/cards/employe-type-card/employee-type-card';
+import EmployeeTypeCard from '~components/cards/employee-type-card/employee-type-card';
 
 const EMPLOYEE_CARDS: {
   title: "Employed" | "Interviewing" | "Archived";

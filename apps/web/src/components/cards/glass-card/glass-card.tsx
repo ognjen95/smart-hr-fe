@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import { CARD_COLOR_MAPPER } from '~common/constants/colors'
 import { CardColors } from '~common/types/types'
@@ -35,4 +35,4 @@ const GlassCard: FC<GLassCardProps> = ({
   </div>
 )
 
-export default GlassCard
+export default memo(GlassCard)
