@@ -28,6 +28,7 @@ export type UseCreateQuestionReturn = {
   onSubmit: SubmitHandler<CreateQuestionFormModel>;
   isLoading?: boolean;
   modal: UseToggleReturn;
+  questionGroupOptions: { value: string; label: string }[];
 };
 
 export type CreateQuestionFormReturn = {

@@ -3,12 +3,31 @@ mutation CreateQuestion($createQuestionInput: CreateQuestionInput!) {
     id
     points
     text
-    questionGroup
+    questionGroup {
+      id
+      name
+    }
     answers {
       answered
       id
       isCorrect
       text
     }
+  }
+}
+
+query FindAllQuestionGroups($queryOptionsInput: QueryOptionsInput) {
+  findAllQuestionGroups(QueryOptionsInput: $queryOptionsInput) {
+    edges {
+      cursor
+      node {
+        id
+        name
+      }
+    }
+    pageInfo {
+      endCursor
+    }
+    totalCount
   }
 }

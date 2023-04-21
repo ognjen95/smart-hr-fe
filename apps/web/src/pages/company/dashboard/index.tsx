@@ -23,7 +23,7 @@ export const data = {
 };
 
 const DashboardPage: NextPage = () => (
-  <DashboardLayout toggleRightDrawer={() => {}}>
+  <DashboardLayout pageName='Dashboard'>
     <>
       <EmployeeStats />
       <Paper>

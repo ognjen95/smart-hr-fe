@@ -8,15 +8,19 @@ import CheckboxField from '~components/form/fields/checkbox-field'
 import InputField from '~components/form/fields/input-field'
 import SelectField from '~components/form/fields/select/select-field'
 
-import { POINTS_OPTIONS, QUESTION_GROUPS_OPTIONS } from '../constants'
+import { POINTS_OPTIONS } from '../constants'
 import { CreateQuestionFormModel } from '../types'
 
 type CreateQuestionFormProps = {
   form: UseFormReturn<CreateQuestionFormModel>
   fieldArray: UseFieldArrayReturn<CreateQuestionFormModel>
+  options: {
+    label: string
+    value: string
+  }[]
 }
 
-const CreateQuestionForm: FC<CreateQuestionFormProps> = ({ form, fieldArray }) => (
+const CreateQuestionForm: FC<CreateQuestionFormProps> = ({ form, fieldArray, options }) => (
   <Form<CreateQuestionFormModel> form={form}>
     {({ control }) => (
       <>
@@ -60,7 +64,7 @@ const CreateQuestionForm: FC<CreateQuestionFormProps> = ({ form, fieldArray }) =
         <div className="mb-4 flex justify-between items-center gap-4">
           <SelectField options={POINTS_OPTIONS} fieldName='points' control={control} label='Points' type='number' />
           <SelectField
-            options={QUESTION_GROUPS_OPTIONS}
+            options={options}
             fieldName='questionGroup' control={control} label='Question group' />
         </div>
       </>

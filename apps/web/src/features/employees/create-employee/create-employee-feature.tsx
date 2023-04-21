@@ -12,7 +12,6 @@ type CreateEmployeeFeatureProps = {
   isOpen: boolean
 }
 
-
 const CreateEmployeeFeature: FC<CreateEmployeeFeatureProps> = ({ toggleRightDrawer, isOpen, }) => {
   const { form, onSubmit, modal } = useCreateEmployee();
 

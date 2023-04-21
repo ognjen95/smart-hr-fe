@@ -9,12 +9,14 @@ type CollectionSectionProps = {
   title: string
   data: GLassCardProps[] | []
   buttons: ReactNode[]
+  onCreate: () => void
 }
 
 const CollectionSection: FC<CollectionSectionProps> = ({
   title,
   data = [],
   buttons,
+  onCreate,
 }) => {
   const { push } = useRouter()
 
@@ -36,13 +38,13 @@ const CollectionSection: FC<CollectionSectionProps> = ({
     <Paper>
       <div className='flex justify-between items-center'>
         <h1 className='mb-4 font-bold text-xl'>{title}</h1>
-        <div className='mb-2'>
+        <div className='mb-2 flex items-center'>
           {buttons}
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3">
         {cards}
-        <div className='h-80 bg-base-200 p-5 glass rounded-xl  border-2 border-base-content flex flex-col justify-center items-center cursor-pointer hover:text-secondary ease-in-out duration-300'>
+        <div onClick={() => onCreate()} className='h-80 bg-base-200 p-5 glass rounded-xl  border-2 border-base-content flex flex-col justify-center items-center cursor-pointer hover:text-accent-content ease-in-out duration-100'>
           <p className='font-bold text-6xl'>+</p>
           <p className='font-bold text-2xl text-center'>New {title.slice(0, -1)}</p>
         </div>

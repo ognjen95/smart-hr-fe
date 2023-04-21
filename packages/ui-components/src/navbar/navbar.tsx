@@ -1,20 +1,37 @@
 import { FC, ReactNode } from "react";
 
+import Button from "../button";
+
 export type NavItem = {
   title: string;
   push: () => void;
 };
 
+export type BreadCrumb = {
+  name: string,
+  push: () => void,
+}
+
 export type NavbarProps = {
   navItems: NavItem[];
   showSearch?: boolean;
   logo: string | ReactNode;
+  pageName: string;
+  breadCrumb?: BreadCrumb
 };
 
-const Navbar: FC<NavbarProps  > = ({ navItems, logo, showSearch = true }) => (
+const Navbar: FC<NavbarProps> = ({ navItems, logo, showSearch = true, pageName, breadCrumb }) => (
   <div className="daisy-navbar bg-base-100 rounded-xl mb-4 shadow-sm shadow-neutral">
+    <div>
+      {breadCrumb?.name && <Button onClick={() => breadCrumb.push()} variant="text">
+        <span className="pb-1 text-center text-xl mr-1">&#8678; </span>
+        <span className="flex items-center">
+          {breadCrumb.name}
+        </span>
+      </Button>}
+    </div>
     <div className="daisy-navbar-end">
-      <a className="daisy-btn daisy-btn-ghost normal-case text-xl">daisyUI</a>
+      <a className="daisy-btn daisy-btn-ghost normal-case text-xl">{pageName}</a>
     </div>
     <div className="daisy-navbar-end">
       <button type="button" className="daisy-btn daisy-btn-ghost daisy-btn-circle">

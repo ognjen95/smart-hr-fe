@@ -73,7 +73,7 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
             <div className='flex items-center gap-8'>
               {/* <h1 className='mr-5'>{employeesList.length} of {totalCount} employees</h1> */}
               <Button size='small' onClick={() => toggleRightDrawer()}>
-                Create new  Employee
+                Create new Employee
               </Button>
             </div>
           </div>

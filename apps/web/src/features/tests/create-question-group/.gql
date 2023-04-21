@@ -1,0 +1,6 @@
+mutation CreateQuestionGroup($createQuestionGroupInput: CreateQuestionGroupInput!) {
+  createQuestionGroup(createQuestionGroupInput: $createQuestionGroupInput) {
+    id
+    name
+  }
+}

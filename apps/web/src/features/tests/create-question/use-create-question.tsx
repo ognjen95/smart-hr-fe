@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { toast } from 'react-toastify'
 
 import useToggle from '~hooks/use-toggle'
@@ -6,14 +6,20 @@ import useToggle from '~hooks/use-toggle'
 import useCreateQuestionForm from './create-question-form/use-create-question-form'
 import { CreateQuestionFormModel, UseCreateQuestion, UseCreateQuestionReturn } from './types'
 
-import { useCreateQuestionMutation } from '~graphql-api'
-
+import { useCreateQuestionMutation, useFindAllQuestionGroupsQuery } from '~graphql-api'
 
 const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
   const { isOpen, open, close, toggle } = useToggle()
+  const { form, fieldArray } = useCreateQuestionForm()
 
-  const {form, fieldArray} = useCreateQuestionForm()
   const [createQuestion] = useCreateQuestionMutation()
+
+  const { data: questionGroup } = useFindAllQuestionGroupsQuery()
+
+  const questionGroupOptions = useMemo(() => questionGroup?.findAllQuestionGroups.edges.map((edge) => ({
+    label: edge.node.name,
+    value: edge.node.id,
+  })) ?? [], [questionGroup])
 
   const onSubmit = useCallback((data: CreateQuestionFormModel) => {
     createQuestion({
@@ -31,7 +37,7 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
           text: data.text,
           answers: data.answers,
           points: data.points,
-          questionGroup: data.questionGroup
+          questionGroup: data.questionGroup || undefined
         }
       }
     })
@@ -48,6 +54,7 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
     form,
     onSubmit,
     fieldArray,
+    questionGroupOptions: [{ label: 'Select question group', value: '' }, ...questionGroupOptions],
     modal: {
       open: handleOpen,
       isOpen,

@@ -5,11 +5,18 @@ import { FCWithChildren } from 'ui-components/src/common/types'
 
 import { Icon } from '../../../dummy-data/data'
 
-type DashboardLayoutProps = {
-  children: ReactNode,
+export type BreadCrumb = {
+  name: string,
+  push: () => void,
 }
 
-const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, }) => {
+type DashboardLayoutProps = {
+  children: ReactNode,
+  pageName: string,
+  breadCrumb?: BreadCrumb
+}
+
+const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, pageName, breadCrumb }) => {
   const { push, asPath } = useRouter()
 
   const SIDE_MENU_DATA = useMemo(() => [
@@ -48,7 +55,7 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, }) =>
       <input id="my-drawer-2" type="checkbox" checked onChange={() => { }} className="daisy-drawer-toggle" />
       <div className="daisy-drawer-content flex flex-col rounded-lg px-5">
         <div className='my-2'>
-          <Navbar navItems={[]} logo={undefined} />
+          <Navbar breadCrumb={breadCrumb} navItems={[]} logo={undefined} pageName={pageName} />
         </div>
         {children}
       </div>

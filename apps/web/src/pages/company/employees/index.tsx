@@ -13,7 +13,7 @@ const EmployeesPage: NextPage = () => {
   }
 
   return (
-    <DashboardLayout>
+    <DashboardLayout pageName='Employees'>
       <>
         <EmployeesListFeature toggleRightDrawer={handleToggle} />
         <CreateEmployeeFeature isOpen={isOpen} toggleRightDrawer={handleToggle} />

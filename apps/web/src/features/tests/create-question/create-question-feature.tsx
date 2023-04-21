@@ -10,7 +10,7 @@ type CreateQuestionProps = {
 }
 
 const CreateQuestionFeature: FC<CreateQuestionProps> = ({ toggleRightDrawer, isOpen }) => {
-  const { form, onSubmit, modal, fieldArray } = useCreateQuestion();
+  const { form, onSubmit, modal, fieldArray, questionGroupOptions } = useCreateQuestion();
 
   return (
     <>
@@ -20,9 +20,9 @@ const CreateQuestionFeature: FC<CreateQuestionProps> = ({ toggleRightDrawer, isO
           <Button key={2} onClick={() => modal.open()}>Save New Question</Button>
         ]}>
 
-        <CreateQuestionForm form={form} fieldArray={fieldArray} />
+        <CreateQuestionForm options={questionGroupOptions} form={form} fieldArray={fieldArray} />
       </DrawerRight>
-      
+
       <Modal
         title='Create New Question'
         description='Are you sure you want to create a new question?'

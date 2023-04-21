@@ -11,7 +11,10 @@ query FindAllQuestion {
         }
         id
         points
-        questionGroup
+        questionGroup{
+          id
+          name
+        }
         text
       }
     }

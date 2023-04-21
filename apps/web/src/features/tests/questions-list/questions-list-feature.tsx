@@ -1,5 +1,5 @@
 import { createColumnHelper } from '@tanstack/react-table';
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Dropdown, Input, Paper, Table } from 'ui-components'
 
 import { QuestionEntity as Question, useFindAllQuestionQuery } from '~graphql-api';
@@ -10,7 +10,7 @@ const columns = [
     cell: (cell) => cell.getValue(),
   }),
   columnHelper.accessor('questionGroup', {
-    cell: (cell) => cell.getValue() ?? 'No Group',
+    cell: (cell) => cell.getValue()?.name ?? 'No Group',
     header: 'Question Group',
   }),
   columnHelper.accessor('answers', {
@@ -30,7 +30,7 @@ const columns = [
 
 const QuestionsListFeature = () => {
   const { data } = useFindAllQuestionQuery()
-  const questions = data?.findAllQuestion.edges.map((item) => item.node) ?? []
+  const questions = useMemo(() => data?.findAllQuestion.edges.map((item) => item.node) ?? [], [data?.findAllQuestion.edges])
 
   return (
     <>

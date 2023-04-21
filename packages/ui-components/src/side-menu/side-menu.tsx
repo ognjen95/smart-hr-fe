@@ -11,9 +11,9 @@ export type SideMenuProps = {
 }
 
 const SideMenu: FC<SideMenuProps> = ({ items }) => (
-  <div className="daisy-drawer-side shadow-lg shadow-neutral">
+  <div className="daisy-drawer-side">
     <label htmlFor="my-drawer-2" className="daisy-drawer-overlay" />
-    <ul className="daisy-menu p-4 bg-base-100 text-base-content">
+    <ul className="daisy-menu p-4 bg-base-200 text-base-content">
       <li className='mb-2'>
         <a className='flex align-items justify-start rounded-lg'>
           <div className='text-2xl text-base-content font-bold'>
