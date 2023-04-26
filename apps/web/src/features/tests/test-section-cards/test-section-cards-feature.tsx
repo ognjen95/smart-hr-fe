@@ -6,7 +6,6 @@ import CollectionSection from '~components/collection-section/collection-section
 
 import useTestSectionCard from './use-test-section-cards';
 
-
 type TestSectionCardsFeatureProps = {
   toggleCreateTest: () => void
 }
