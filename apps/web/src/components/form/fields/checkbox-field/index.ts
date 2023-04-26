@@ -1,4 +1,4 @@
-import CheckboxField from "./checkbox";
+import CheckboxField from "./checkboxField";
 
 export default CheckboxField;
-export * from "./checkbox";
+export * from "./checkboxField";

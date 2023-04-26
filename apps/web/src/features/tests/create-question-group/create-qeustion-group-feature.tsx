@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { toast } from 'react-toastify'
-import { Modal } from 'ui-components'
 
 import Form from '~components/form'
 import InputField from '~components/form/fields/input-field'
+import Modal from '~components/modal'
 import useForm from '~hooks/use-form'
 import useModal from '~hooks/use-toggle'
 

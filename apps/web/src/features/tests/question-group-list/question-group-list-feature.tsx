@@ -19,11 +19,11 @@ const QuestionGroupListFeature: FC<QuestionGroupListFeatureProps> = ({ toggleCre
     <CollectionSection
       onCreate={toggleCreatePoolModal}
       buttons={[
-        <Button key={3} size='small' variant='text' onClick={toggleCreateQuestionDrawer}>Create New Question</Button>,
+        <Button key={3} size='small' variant='text' onClick={toggleCreateQuestionDrawer}>Create New Questions Pool</Button>,
         <Button key={4} size='small' variant='text' onClick={() => push(`${asPath}/questions`)}>See All</Button>
       ]}
       data={questionGroups}
-      title='Question Pools'
+      title='Questions'
     />
   )
 }

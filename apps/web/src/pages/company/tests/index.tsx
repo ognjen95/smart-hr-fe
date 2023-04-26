@@ -1,49 +1,25 @@
 import { TEST_CARDS } from 'dummy-data/employee-data';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 import { Button } from 'ui-components';
 
+import { CardColors } from '~common/types/types';
 import EmployeeTypeCard from '~components/cards/employee-type-card/employee-type-card';
 import { GLassCardProps } from '~components/cards/glass-card/glass-card';
 import CollectionSection from '~components/collection-section/collection-section';
 import DashboardLayout from '~components/layouts/dashboard-layout';
 import CreateQuestionFeature from '~features/tests/create-question/create-question-feature';
 import CreateQuestionGroupFeature from '~features/tests/create-question-group/create-qeustion-group-feature';
+import CreateTestFeature from '~features/tests/create-test/create-test-feature';
 import QuestionGroupListFeature from '~features/tests/question-group-list/question-group-list-feature';
+import TestSectionCardsFeature from '~features/tests/test-section-cards/test-section-cards-feature';
 import useToggle from '~hooks/use-toggle';
-
-const CARDS: GLassCardProps[] = [
-  {
-    title: 'Java Questions',
-    description: 'This is a collection of Java questions',
-    color: 'primary',
-    button: {
-      text: 'View More',
-      url: '/company/tests'
-    }
-  },
-  {
-    title: 'Javascript Questions',
-    description: 'This is a collection of Javascript questions',
-    color: 'secondary',
-    button: {
-      text: 'View More',
-      url: '/company/tests'
-    }
-  },
-  {
-    title: 'NodeJS Questions',
-    description: 'This is a collection of NodeJs questions',
-    color: 'accent',
-    button: {
-      text: 'View More',
-      url: '/company/tests'
-    }
-  },
-]
 
 const TestsPage: NextPage = () => {
   const { isOpen: isCreateQuestionOpen, toggle: toggleCreateQuestionOpen } = useToggle()
   const { isOpen: isCreatePoolOpen, toggle: toggleCreatePool } = useToggle()
+  const { isOpen: isCreateTestOpen, toggle: toggleCreateTest } = useToggle()
 
   return (
     <DashboardLayout pageName='Tests'>
@@ -53,20 +29,11 @@ const TestsPage: NextPage = () => {
             <EmployeeTypeCard key={card.title} {...card} onClick={() => { }} />
           ))}
         </div>
-        {/* Tests */}
-        <CollectionSection
-          onCreate={() => { }}
-          title='Tests'
-          data={CARDS}
-          buttons={[
-            <Button key={1} size='small' variant='text' onClick={() => { }}>See All</Button>,
-          ]}
-        />
-
-        {/* Questions & Question Pools */}
+        <TestSectionCardsFeature toggleCreateTest={toggleCreateTest} />
+        <CreateTestFeature isOpen={isCreateTestOpen} toggleRightDrawer={toggleCreateTest} />
         <QuestionGroupListFeature toggleCreateQuestionDrawer={toggleCreateQuestionOpen} toggleCreatePoolModal={toggleCreatePool} />
-        <CreateQuestionGroupFeature isOpen={isCreatePoolOpen} toggle={toggleCreatePool} />
-        <CreateQuestionFeature isOpen={isCreateQuestionOpen} toggleRightDrawer={toggleCreateQuestionOpen} />
+        <CreateQuestionGroupFeature isOpen={isCreateQuestionOpen} toggle={toggleCreateQuestionOpen} />
+        <CreateQuestionFeature isOpen={isCreatePoolOpen} toggleRightDrawer={toggleCreatePool} />
       </>
     </DashboardLayout>
   )

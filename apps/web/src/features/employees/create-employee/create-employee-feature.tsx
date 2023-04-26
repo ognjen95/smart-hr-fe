@@ -1,8 +1,10 @@
 import React, { FC, memo } from 'react'
-import { Button, DrawerRight, Modal } from 'ui-components'
+import { Button } from 'ui-components'
 
+import DrawerRight from '~components/drawers'
 import Form from '~components/form'
 import InputField from '~components/form/fields/input-field'
+import Modal from '~components/modal'
 
 import { CreateEmployeeFormModel } from './types'
 import useCreateEmployee from './use-create-employee'

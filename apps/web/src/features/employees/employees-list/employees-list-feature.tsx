@@ -16,19 +16,22 @@ const columnHelper = createColumnHelper<User>();
 const columns = [
   columnHelper.accessor('firstName', {
     cell: (cell) => cell.getValue(),
+    header: 'FIRST NAME',
   }),
   columnHelper.accessor('lastName', {
     cell: (cell) => cell.getValue(),
+    header: 'LAST NAME',
   }),
   columnHelper.accessor('email', {
     cell: (cell) => cell.getValue(),
+    header: 'EMAIL',
   }),
   columnHelper.accessor('employmentStatus', {
     cell: (cell) => {
       const status = cell.getValue<ColorMapper>()
       return <span className={`daisy-badge ${EMPLOYMENT_BADGE_COLOR_MAPPER[status]} pb-1`}>{status}</span>
     },
-    header: 'Employment Status',
+    header: 'EMPLOYMENT STATUS',
   }),
 ]
 
@@ -54,29 +57,29 @@ const EmployeesListFeature: FC<EmployeesListFeatureProps> = ({ toggleRightDrawer
       {/* Employee Type Header Cards */}
       <EmployeeCardTypeList />
       {/* Employees Table */}
-      <div className='mt-2 rounded-xl' >
-        <h1 className='mb-4 font-bold text-xl'>Employees Table</h1>
-        <Paper noPadding>
-          <div className="flex justify-between items-center px-3 py-1">
-            <div className="flex justify-start items-center gap-2">
-              <div className='w-64'>
-                <Input
-                  size='small'
-                  placeholder='Search Employees'
-                  value={searchTerm}
-                  onChange={(e) => handleSearch(e.target.value)}
-                />
-              </div>
-              {/* Filters and Sorting */}
-              <FIlterAndSortForm form={form} />
+      <div className='mt-2 rounded-xl'>
+        <div className="flex justify-between items-center py-1">
+          <h1 className='font-bold text-xl'>Employees Table</h1>
+          <div className="flex justify-start items-center gap-2">
+            <div className='w-64'>
+              <Input
+                size='small'
+                placeholder='Search Employees'
+                value={searchTerm}
+                onChange={(e) => handleSearch(e.target.value)}
+              />
             </div>
-            <div className='flex items-center gap-8'>
-              {/* <h1 className='mr-5'>{employeesList.length} of {totalCount} employees</h1> */}
-              <Button size='small' onClick={() => toggleRightDrawer()}>
-                Create new Employee
-              </Button>
-            </div>
+            {/* Filters and Sorting */}
+            <FIlterAndSortForm form={form} />
           </div>
+          <div className='flex items-center gap-8'>
+            {/* <h1 className='mr-5'>{employeesList.length} of {totalCount} employees</h1> */}
+            <Button size='small' onClick={() => toggleRightDrawer()}>
+              Create new Employee
+            </Button>
+          </div>
+        </div>
+        <Paper noPadding>
           {/* TableList */}
           <Table<User>
             data={employeesList}

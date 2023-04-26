@@ -14,7 +14,7 @@ const Select: FC<SelectProps> = ({ options, label, errorMessage, ...props }) => 
     {label && <label className="daisy-label">
       <span className="daisy-label-text">{label}</span>
     </label>}
-    <select className="daisy-select daisy-select-primary" {...props}>
+    <select className="daisy-select daisy-select-primary"  {...props}>
       {options?.map((option, index) => (
         <option value={option.value} key={index}>
           {option.label}

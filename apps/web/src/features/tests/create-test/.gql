@@ -1,0 +1,26 @@
+mutation CreateTest($createTestInput: CreateTestInput!) {
+  createTest(createTestInput: $createTestInput) {
+    endsAt
+    id
+    name
+    percentageScored
+    percentageToPass
+    questions {
+      answers {
+        answered
+        id
+        isCorrect
+        text
+      }
+      id
+      points
+      questionGroup {
+        id
+        name
+      }
+      text
+    }
+    startedAt
+    timeLimit
+  }
+}

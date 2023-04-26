@@ -1,0 +1,36 @@
+query FindAllTests($queryOptionsInput: QueryOptionsInput) {
+  findAllTests(QueryOptionsInput: $queryOptionsInput) {
+    edges {
+      cursor
+      node {
+        endsAt
+        id
+        name
+        percentageScored
+        percentageToPass
+        questions {
+          answers {
+            answered
+            id
+            isCorrect
+            text
+          }
+          id
+          points
+          questionGroup {
+            id
+            name
+          }
+          testId
+          text
+        }
+        startedAt
+        timeLimit
+      }
+    }
+    totalCount
+    pageInfo {
+      hasNextPage
+    }
+  }
+}

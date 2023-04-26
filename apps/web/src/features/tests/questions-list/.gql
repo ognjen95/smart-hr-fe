@@ -1,5 +1,5 @@
-query FindAllQuestion {
-  findAllQuestion {
+query FindAllQuestion($queryOptionsInput: QueryOptionsInput) {
+  findAllQuestion(QueryOptionsInput: $queryOptionsInput) {
     edges {
       cursor
       node {
@@ -11,15 +11,19 @@ query FindAllQuestion {
         }
         id
         points
-        questionGroup{
+        questionGroup {
           id
           name
         }
+        testId
         text
       }
     }
     pageInfo {
       endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
     }
     totalCount
   }

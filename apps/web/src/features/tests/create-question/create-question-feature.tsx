@@ -1,5 +1,8 @@
 import React, { FC, memo } from 'react'
-import { Button, DrawerRight, Modal } from 'ui-components'
+import { Button } from 'ui-components'
+
+import DrawerRight from '~components/drawers'
+import Modal from '~components/modal'
 
 import CreateQuestionForm from './create-question-form/create-question-form'
 import useCreateQuestion from './use-create-question'
@@ -14,12 +17,13 @@ const CreateQuestionFeature: FC<CreateQuestionProps> = ({ toggleRightDrawer, isO
 
   return (
     <>
-      <DrawerRight isOpen={isOpen} title='Create New Question'
+      <DrawerRight
+        isOpen={isOpen}
+        title='Create New Question'
         actionButtons={[
           <Button onClick={() => toggleRightDrawer()} variant='text' key={1}>Close</Button>,
           <Button key={2} onClick={() => modal.open()}>Save New Question</Button>
         ]}>
-
         <CreateQuestionForm options={questionGroupOptions} form={form} fieldArray={fieldArray} />
       </DrawerRight>
 

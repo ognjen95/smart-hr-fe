@@ -7,7 +7,7 @@ import QuestionsListFeature from '~features/tests/questions-list/questions-list-
 const QuestionsPage = () => {
   const { push } = useRouter()
   return (
-    <DashboardLayout pageName='Questions' breadCrumb={{
+    <DashboardLayout pageName='Questions List' breadCrumb={{
       name: 'Tests',
       push: () => push('/company/tests')
     }}>
