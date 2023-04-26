@@ -1,13 +1,7 @@
 import { TEST_CARDS } from 'dummy-data/employee-data';
 import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useMemo } from 'react';
-import { Button } from 'ui-components';
 
-import { CardColors } from '~common/types/types';
 import EmployeeTypeCard from '~components/cards/employee-type-card/employee-type-card';
-import { GLassCardProps } from '~components/cards/glass-card/glass-card';
-import CollectionSection from '~components/collection-section/collection-section';
 import DashboardLayout from '~components/layouts/dashboard-layout';
 import CreateQuestionFeature from '~features/tests/create-question/create-question-feature';
 import CreateQuestionGroupFeature from '~features/tests/create-question-group/create-qeustion-group-feature';

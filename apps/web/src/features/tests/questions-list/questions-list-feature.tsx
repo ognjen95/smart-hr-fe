@@ -37,7 +37,7 @@ const columns = [
 ]
 
 type QuestionsListFeatureProps = {
-  control?: Control<CreateTestModel, any>
+  control?: Control<CreateTestModel>
 }
 
 const QuestionsListFeature: FC<QuestionsListFeatureProps> = ({ control }) => {
