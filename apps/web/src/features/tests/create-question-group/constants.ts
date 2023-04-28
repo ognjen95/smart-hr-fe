@@ -10,5 +10,5 @@ export const DEFAULT_VALUES = {
 };
 export const VALIDATION_SCHEMA: ObjectSchema<CreateQuestionGroupModel> =
   object().shape({
-    name: string().required('This field is required'),
+    name: string().required('This field is required').trim(),
   });

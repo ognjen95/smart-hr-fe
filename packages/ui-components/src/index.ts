@@ -41,3 +41,7 @@ export * from './drawers';
 
 export { default as Select } from './select';
 export * from './select';
+
+export { default as Text } from './text';
+export * from './text';
+

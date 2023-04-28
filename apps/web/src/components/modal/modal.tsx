@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import { memo, useEffect, useState } from "react";
 import { Portal } from 'react-portal';
+import { Button } from "ui-components";
 import { FCWithChildren } from "ui-components/src/common/types";
 
 import { POSITION_CLASS_MAPPER, WIDTH_CLASS_MAPPER } from "./constants";
@@ -19,7 +20,7 @@ export type ModalProps = {
   };
   rightButton: {
     buttonText: string;
-    onClick: (a: unknown) => void;
+    onClick: () => void;
   };
 };
 
@@ -52,7 +53,7 @@ const Modal: FCWithChildren<ModalProps> = ({
             className={clsx(
               "daisy-modal",
               [{ "daisy-modal-open": isOpen }],
-              POSITION_CLASS_MAPPER[position]
+              POSITION_CLASS_MAPPER[position],
             )}
           >
             <motion.div
@@ -68,19 +69,15 @@ const Modal: FCWithChildren<ModalProps> = ({
               <h3 className={clsx("font-bold", "text-2xl", "mb-4 text-accent-content")}> {title}</h3>
               {description && <p className="daisy-py-4 text-accent-content">{description}</p>}
               {children}
-              <div className="daisy-modal-action">
+              <div className="daisy-modal-action mt-10">
                 {leftButtonText && (
-                  <button type="button" className="daisy-btn daisy-btn-ghost text-accent-content rounded-xl" onClick={leftButtonOnClick}>
+                  <Button variant="text" onClick={leftButtonOnClick}>
                     {leftButtonText}
-                  </button>
+                  </Button>
                 )}
-                <button
-                  type="button"
-                  className="daisy-btn border-accent-content rounded-xl bg-accent-content text-neutral hover:daisy-btn-ghost hover:text-accent-content"
-                  onClick={rightButtonOnClick}
-                >
+                <Button color='secondary' onClick={rightButtonOnClick}>
                   {rightButtonText}
-                </button>
+                </Button>
               </div>
             </motion.div>
           </div>

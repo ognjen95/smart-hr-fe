@@ -64,10 +64,8 @@ const Table = <TRow extends Record<string, unknown> = Record<string, unknown>>({
                           {renderCheckbox(idx, row.original.id as string)}
                         </span>
                       )}
-
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </div>
-
                   </td>
                 ))}
               </tr>

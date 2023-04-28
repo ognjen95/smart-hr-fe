@@ -1,0 +1,30 @@
+query FindTestById($findTestByIdId: String!) {
+  findTestById(id: $findTestByIdId) {
+    createdAt
+    employeeId
+    endsAt
+    id
+    name
+    percentageScored
+    percentageToPass
+    questions {
+      answerType
+      answers {
+        answered
+        id
+        isCorrect
+        text
+      }
+      id
+      points
+      questionGroup {
+        id
+        name
+      }
+      testId
+      text
+    }
+    startedAt
+    timeLimit
+  }
+}

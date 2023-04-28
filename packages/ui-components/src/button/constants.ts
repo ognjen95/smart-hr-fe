@@ -14,11 +14,11 @@ const SIZE_CLASS_MAPPER: Record<ButtonSize, string> = {
 };
 
 const COLOR_CLASS_MAPPER: Record<ButtonColor, string> = {
-  primary: "daisy-btn-primary",
-  secondary: "daisy-btn-secondary",
+  primary: "daisy-btn-primary text-accent-content",
   error: "daisy-btn-error",
-  "accent-content": "daisy-btn-accent-content",
+  secondary: "bg-accent-content hover:bg-primary hover:text-white text-primary border-none",
   success: "daisy-btn-success",
+  "accent-content": "bg-accent-content hover:bg-primary hover:text-white text-primary",
 };
 
 export { VARIANT_CLASS_MAPPER, SIZE_CLASS_MAPPER, COLOR_CLASS_MAPPER };

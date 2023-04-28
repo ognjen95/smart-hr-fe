@@ -42,7 +42,12 @@ const CreateQuestionGroupFeature: FC<CreateQuestionGroupFeatureProps> = ({
 
         rightButton={{
           buttonText: 'Create',
-          onClick: () => { open() }
+          onClick: async () => {
+            const isValid = await form.trigger()
+            if (!isValid) return;
+
+            open()
+          }
         }}
       >
         <Form<CreateQuestionGroupModel> form={form}>

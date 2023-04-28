@@ -4,6 +4,7 @@ import { Button } from 'ui-components'
 import DrawerRight from '~components/drawers'
 import Form from '~components/form'
 import InputField from '~components/form/fields/input-field'
+import SelectField from '~components/form/fields/select/select-field'
 import Modal from '~components/modal'
 
 import { CreateEmployeeFormModel } from './types'
@@ -46,7 +47,10 @@ const CreateEmployeeFeature: FC<CreateEmployeeFeatureProps> = ({ toggleRightDraw
                 <InputField fieldName='confirmPassword' control={control} label='Confirm password' />
               </div>
               <div className="mb-4">
-                <InputField fieldName='employeeStatus' control={control} label='Employee Status' />
+                <SelectField options={[
+                  { label: 'Employed', value: 'employed' },
+                  { label: 'Interviewing', value: 'interviewing' },
+                ]} fieldName='employeeStatus' control={control} label='Employee Status' />
               </div>
             </>
           )}

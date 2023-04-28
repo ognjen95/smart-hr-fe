@@ -17,6 +17,7 @@ export type ButtonProps = {
   loading?: boolean;
   fullWidth?: boolean;
   children?: ReactNode;
+  rounded?: boolean;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -30,6 +31,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       color = "primary",
       loading = false,
       fullWidth = false,
+      rounded = true,
     },
     ref
   ) => (
@@ -40,12 +42,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         VARIANT_CLASS_MAPPER[variant],
         SIZE_CLASS_MAPPER[size],
         COLOR_CLASS_MAPPER[color],
-        'rounded-xl',
         {
           "daisy-loading": loading,
           "w-full": fullWidth,
+          "rounded-full": rounded,
         },
-        )}
+        "px-5",
+      )}
       form={formName}
       ref={ref}
       onClick={onClick}

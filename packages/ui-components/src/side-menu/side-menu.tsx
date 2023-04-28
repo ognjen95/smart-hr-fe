@@ -23,12 +23,12 @@ const SideMenu: FC<SideMenuProps> = ({ items }) => (
       </li>
       {items.map(({ name, onClick, icon, isActive }) => (
         <li key={name} className='my-1'>
-          <a className={`p-3 flex align-items justify-start rounded-xl active:scale-90 ease-in-out duration-200 ${isActive ? 'bg-primary' : ''}`} onClick={onClick}>
-            <div className={`p-1 rounded-lg shadow-md shadow-primary-focus bg-primary box-border ${isActive ? 'shadow-neutral shadow-xxl' : ''}`}>
+          <a className={`p-[.5rem] my-1 flex align-items justify-start rounded-full active:scale-90 ease-in-out duration-200 ${isActive ? 'bg-gradient-to-r from-primary-focus to-primary text-white border-primary' : ''}`} onClick={onClick}>
+            <div className="p-1 rounded-full shadow shadow-primary-focus bg-primary box-border">
               {icon}
             </div>
             <div>
-              <p className='text-md'>
+              <p className='text-lg'>
                 {name}
               </p>
             </div>

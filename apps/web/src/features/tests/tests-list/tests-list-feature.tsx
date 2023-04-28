@@ -1,4 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table";
+import { useRouter } from "next/router";
 import { Dropdown, Input, Paper, Table } from "ui-components"
 
 import useTestsList from "./use-tests-list";
@@ -10,6 +11,10 @@ const columns = [
   columnHelper.accessor('name', {
     cell: (cell) => cell.getValue(),
     header: 'TEST NAME',
+  }),
+  columnHelper.accessor('questions', {
+    cell: (cell) => cell.getValue().length.toString(),
+    header: 'NO. QUESTIONS',
   }),
   columnHelper.accessor('percentageScored', {
     cell: (cell) => cell.getValue(),
@@ -31,7 +36,7 @@ const columns = [
 
 const TestsListFeature = () => {
   const { search, handleSetSearch, tests } = useTestsList()
-
+  const { push } = useRouter()
   return (
     <>
       <div className="flex justify-between items-center py-1">
@@ -53,6 +58,7 @@ const TestsListFeature = () => {
         <Table<TestEntity>
           data={tests}
           columns={columns as []}
+          onRowClick={(id) => push(`/company/tests/${id}`)}
         />
       </Paper>
     </>

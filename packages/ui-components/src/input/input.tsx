@@ -7,23 +7,25 @@ export type InputProps = {
   placeholder?: string;
   type?: "text" | "email" | "number" | "password";
   size?: "small" | "normal" | "large";
-  color?: "primary" | "error" | "success" | "info" | "warning";
+  color?: "primary" | "error" | "success" | "info" | "warning" | "secondary";
   label?: string;
   fullWidth?: boolean;
   textArea?: boolean
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   errorMessage?: string
+  rounded?: boolean
 };
 
 const Input: FC<InputProps> = ({
   placeholder = "Type something",
   type = "text",
   size = "normal",
-  color = "primary",
+  color = 'secondary',
   label,
   textArea,
   fullWidth = true,
+  rounded = true,
   errorMessage,
   ...props
 }) => (
@@ -38,11 +40,12 @@ const Input: FC<InputProps> = ({
         className={clsx(
           " daisy-textarea",
           "w-full",
+          "daisy-textarea-primary",
           "daisy-input-bordered",
-          "rounded-xl",
+          rounded ? "rounded-full" : "rounded-xl",
           "h-24",
           COLORS_CLASS_MAPPER[color],
-          SIZES_CLASS_MAPPER[size]
+          SIZES_CLASS_MAPPER[size],
         )}
         placeholder={placeholder}
         {...props}
@@ -51,12 +54,12 @@ const Input: FC<InputProps> = ({
       <input
         className={clsx(
           "daisy-input",
-          "daisy-textarea-primary",
           "w-full",
           "daisy-input-bordered",
-          "rounded-xl",
+          rounded ? "rounded-full" : "rounded-xl",
           COLORS_CLASS_MAPPER[color],
-          SIZES_CLASS_MAPPER[size]
+          SIZES_CLASS_MAPPER[size],
+          "bg-base-100 shadow-inner",
         )}
         type={type}
         placeholder={placeholder}

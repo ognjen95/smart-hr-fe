@@ -3,6 +3,7 @@ query FindAllQuestion($queryOptionsInput: QueryOptionsInput) {
     edges {
       cursor
       node {
+        answerType
         answers {
           answered
           id

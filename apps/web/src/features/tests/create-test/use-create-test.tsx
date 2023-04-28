@@ -6,7 +6,7 @@ import useToggle from '~hooks/use-toggle'
 import useCreateTestForm from './create-test-form/use-create-test-form'
 import { CreateTestModel } from './types'
 
-import { useCreateTestMutation } from '~graphql-api'
+import { FindAllTestsDocument, useCreateTestMutation } from '~graphql-api'
 
 const useCreateTest = () => {
   const { form } = useCreateTestForm()
@@ -15,6 +15,8 @@ const useCreateTest = () => {
 
   const onSubmit = useCallback(async (data: CreateTestModel) => {
     await createTest({
+      awaitRefetchQueries: true,
+      refetchQueries: [FindAllTestsDocument],
       onError: () => {
         toast.error('Something went wrong')
       },

@@ -1,4 +1,5 @@
 const COLORS_CLASS_MAPPER = {
+  secondary: '',
   primary: "daisy-input-primary",
   error: "daisy-input-error",
   success: "daisy-input-success",

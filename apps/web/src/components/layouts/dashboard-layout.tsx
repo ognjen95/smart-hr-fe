@@ -2,8 +2,8 @@ import { useRouter } from 'next/router'
 import { ReactNode, memo, useMemo } from 'react'
 import { Navbar, SideMenu } from 'ui-components'
 import { FCWithChildren } from 'ui-components/src/common/types'
-
-import { Icon } from '../../../dummy-data/data'
+import { IconSize, IconType } from 'ui-components/src/icon/enums'
+import Icon from 'ui-components/src/icon/icon'
 
 export type BreadCrumb = {
   name: string,
@@ -22,30 +22,30 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, pageN
   const SIDE_MENU_DATA = useMemo(() => [
     {
       name: 'Dashboard',
-      icon: <Icon />,
+      icon: <Icon type={IconType.DASHBOARD} />,
       onClick: () => { push('/company/dashboard') },
       isActive: asPath.includes('/company/dashboard')
     },
     {
       name: 'Employees',
-      icon: <Icon />,
+      icon: <Icon type={IconType.AVATAR} fill='whtie'/>,
       onClick: () => { push('/company/employees') },
       isActive: asPath.includes('/company/employees')
     },
     {
       name: 'Tests',
-      icon: <Icon />,
+      icon: <Icon type={IconType.PROJECT} />,
       onClick: () => { push('/company/tests') },
       isActive: asPath.includes('/company/tests')
     },
     {
       name: 'Documents',
-      icon: <Icon />,
+      icon: <Icon type={IconType.DASHBOARD} />,
       onClick: () => { },
     },
     {
       name: 'Stats',
-      icon: <Icon />,
+      icon: <Icon type={IconType.PROJECT} />,
       onClick: () => { },
     },
   ], [asPath, push])
