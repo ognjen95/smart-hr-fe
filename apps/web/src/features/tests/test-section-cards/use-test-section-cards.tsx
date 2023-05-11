@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { CardColors } from '~common/types/types';
+// import { CardColors } from '~common/types/types';
 import { GLassCardProps } from '~components/cards/glass-card/glass-card';
 
 import { useFindAllTestsQuery } from '~graphql-api';
@@ -19,10 +19,11 @@ const useTestSectionCard = (): UseTestSectionCardReturnType => {
       }
     }
   })
-  const tests: GLassCardProps[] = useMemo(() => data?.findAllTests.edges.map((edge, index) => ({
+
+  const tests: GLassCardProps[] = useMemo(() => data?.findAllTests.edges.map((edge) => ({
     title: edge.node.name,
     description: 'Click to view more or to add new tests.',
-    color: ['primary', 'secondary', 'accent'][index] as CardColors,
+    // color: ['primary', 'secondary', 'accent'][index] as CardColors,
     button: {
       text: 'View More',
       url: `/company/tests/tests-list?${edge.node.name}`

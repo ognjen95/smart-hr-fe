@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { UseFieldArrayReturn, UseFormReturn } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 import { Button } from 'ui-components'
 
 import Form from '~components/form'
@@ -21,16 +21,30 @@ const CreateTestForm: FC<CreateTestFormProps> = ({ form }) => {
       {({ control }) => (
         <>
           <div className="mb-4">
-            <InputField fieldName='name' control={control} label='Test name' />
+            <InputField
+              fieldName='name'
+              control={control}
+              label='Test name'
+            />
           </div>
           <div className="mb-4">
-            <InputField type='number' fieldName='percentageToPass' control={control} label='Percentage required to pass (%)' />
+            <InputField
+              type='number'
+              fieldName='percentageToPass'
+              control={control}
+              label='Percentage required to pass (%)'
+            />
           </div>
           <div className="mb-4">
-            <InputField type='number' fieldName='timeLimit' control={control} label='Time limit in minutes' />
+            <InputField
+              type='number'
+              fieldName='timeLimit'
+              control={control}
+              label='Time limit in minutes'
+            />
           </div>
           <div className="mb-4">
-            <Button fullWidth onClick={() => { open() }}>
+            <Button fullWidth onClick={open}>
               Pick Questions for Test
             </Button>
             <Modal
@@ -39,12 +53,12 @@ const CreateTestForm: FC<CreateTestFormProps> = ({ form }) => {
               size='extra-large'
               rightButton={{
                 buttonText: 'Close',
-                onClick: () => {
-                  close()
-                }
+                onClick: close
               }}
             >
-              <QuestionsListFeature control={control} />
+              <div className='h-[550px] z-0 overflow-y-scroll'>
+                <QuestionsListFeature control={control} />
+              </div>
             </Modal>
           </div>
         </>

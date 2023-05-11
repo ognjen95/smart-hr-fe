@@ -44,3 +44,6 @@ export * from "./radio";
 
 export { default as Loader } from "./loader";
 // export * from "./loader";
+
+export { default as Tabs } from "./tabs";
+export * from "./tabs";

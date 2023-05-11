@@ -3,10 +3,11 @@ import { Paper } from 'ui-components'
 
 import { User } from '~graphql-api'
 
-export type ProfileInfoSectionProps = {
+export type ProfileInfoSectionFeatureProps = {
   employee?: Omit<User, 'password'>
 }
-const ProfileInfoSection: FC<ProfileInfoSectionProps> = ({
+
+const ProfileInfoSectionFeature: FC<ProfileInfoSectionFeatureProps> = ({
   employee
 }) => {
   const {
@@ -38,4 +39,4 @@ const ProfileInfoSection: FC<ProfileInfoSectionProps> = ({
   )
 }
 
-export default ProfileInfoSection
+export default ProfileInfoSectionFeature

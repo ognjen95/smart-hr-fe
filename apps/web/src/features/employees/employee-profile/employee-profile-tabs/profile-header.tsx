@@ -8,15 +8,14 @@ type ProfileHeaderProps = {
 }
 
 const ProfileHeader: FC<ProfileHeaderProps> = ({ employee }) => (
-  <Paper>
+  <Paper offsetY={0}>
     <div className='flex justify-between items-center w-full'>
       <div className='flex justify-center items-center text-white gap-5'>
         <div className="daisy-avatar daisy-online">
-          <div className="w-24 rounded-xl border-2 border-white">
+          <div className="w-24 rounded-full border-2 border-white">
             <img src="https://faces-img.xcdn.link/image-lorem-face-6149.jpg" alt='avatar' />
           </div>
         </div>
-
         <div>
           <h2 className='font-bold text-xl'>
             {`${employee?.firstName ?? ''} ${employee?.lastName ?? ''}`}
@@ -26,7 +25,6 @@ const ProfileHeader: FC<ProfileHeaderProps> = ({ employee }) => (
           </h2>
         </div>
       </div>
-
       <div className='flex gap-4'>
         <div>
           <Button>Message</Button>

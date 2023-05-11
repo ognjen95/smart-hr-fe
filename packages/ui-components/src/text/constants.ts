@@ -14,6 +14,7 @@ export const SPAN_VARIANTS: TextVariant[] = [
   "regularBodyDark",
   "regularBodyDarkBolded",
   "regularBodyLight",
+  "regularBodyLightBolded",
   "error",
   "label",
 ];
@@ -29,6 +30,7 @@ export const TEXT_SIZE_CLASS_MAPPER: Record<TextVariant, string> = {
   regularBodyDark: "text-base",
   regularBodyLight: "text-base",
   regularBodyDarkBolded: "text-base",
+  regularBodyLightBolded: "text-base",
   error: "text-sm",
   label: "text-sm",
 };
@@ -42,6 +44,7 @@ export const FONT_WEIGHT_CLASS_MAPPER: Record<TextVariant, string> = {
   smallBodyLight: "font-normal",
   smallBodyDark: "font-normal",
   regularBodyLight: "font-normal",
+  regularBodyLightBolded: "font-bold",
   regularBodyDarkBolded: "font-bold",
   regularBodyDark: "font-normal",
   error: "font-light",
@@ -55,6 +58,7 @@ export const TEXT_COLOR_CLASS_MAPPER: Record<TextVariant, string> = {
   heading4: "text-gray-700",
   heading4Small: "text-slate-800",
   smallBodyLight: "text-slate-500",
+  regularBodyLightBolded: "text-slate-700",
   smallBodyDark: "text-gray-900",
   regularBodyDark: "text-gray-700",
   regularBodyLight: "text-gray-500",

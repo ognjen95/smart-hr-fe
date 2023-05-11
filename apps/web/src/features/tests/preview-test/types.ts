@@ -18,5 +18,6 @@ export type UseTestQuestionListReturn = {
   form: UseFormReturn<QuestionModel>;
   fieldArray: UseFieldArrayReturn<QuestionModel, "questions">;
   test: TestEntity | undefined;
-  refetch: () => void;
+  handleAnswer: (selectedAnswer: string, questionId: string) => void;
+  loading: boolean;
 };

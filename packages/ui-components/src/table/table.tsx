@@ -5,6 +5,8 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { motion } from 'framer-motion'
 
 
 export type TableProps<
@@ -29,7 +31,7 @@ const Table = <TRow extends Record<string, unknown> = Record<string, unknown>>({
   });
 
   return (
-    <div className={`overflow-x-auto rounded-xl ${renderCheckbox ? 'pl-12' : ''} px-4 relative`}>
+    <div className={`overflow-x-auto rounded-xl ${renderCheckbox ? 'pl-12' : ''} px-4 relative overflow-hidden`}>
       <table className="table border-separate text-sm w-full border-spacing-y-4">
         <thead className="text-left">
           {table.getHeaderGroups().map((headerGroups) => (
@@ -55,7 +57,13 @@ const Table = <TRow extends Record<string, unknown> = Record<string, unknown>>({
               }
             }
             return (
-              <tr key={row.id} onClick={handleRowClick} className="cursor-pointer daisy-hover bg-base-100 hover:bg-primary-focus">
+              <motion.tr
+                {... {
+                  initial: { opacity: 0, y: 50 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.5, delay: idx * 0.1 },
+                }}
+                key={row.id} onClick={handleRowClick} className="cursor-pointer daisy-hover bg-base-100 hover:bg-primary-focus">
                 {row.getVisibleCells().map((cell, i) => (
                   <td key={cell.id} className="p-5 border-base-300  [&:first-child]:rounded-l-xl [&:last-child]:rounded-r-xl">
                     <div className="flex items-center gap-1">
@@ -68,7 +76,7 @@ const Table = <TRow extends Record<string, unknown> = Record<string, unknown>>({
                     </div>
                   </td>
                 ))}
-              </tr>
+              </motion.tr>
             )
           })}
         </tbody>

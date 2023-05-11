@@ -14,17 +14,15 @@ const useQuestionGroupList = (): QuestionGroupListReturn => {
 
   const questionGroups = useMemo(
     () =>
-      questionGroup?.findAllQuestionGroups.edges
-        .slice(0, 3)
-        .map((edge, index) => ({
-          title: `${edge.node.name.toUpperCase()}`,
-          description: `This is a collection of ${edge.node.name.toUpperCase()} questions. Click to view more or to add new questions.`,
-          color: ["accent", "primary", "secondary"][index] as CardColors,
-          button: {
-            text: "View Question Pool",
-            url: `/company/tests/questions?question-pool=${edge.node.name}`,
-          },
-        })) ?? [],
+      questionGroup?.findAllQuestionGroups.edges.slice(0, 3).map((edge) => ({
+        title: `${edge.node.name.toUpperCase()}`,
+        description: `This is a collection of ${edge.node.name.toUpperCase()} questions. Click to view more or to add new questions.`,
+        color: "secondary" as CardColors,
+        button: {
+          text: "View Question Pool",
+          url: `/company/tests/questions?question-pool=${edge.node.name}`,
+        },
+      })) ?? [],
     [questionGroup]
   );
 

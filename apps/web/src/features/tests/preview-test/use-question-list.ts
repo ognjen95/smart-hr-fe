@@ -1,12 +1,17 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useFieldArray } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import useForm from "~hooks/use-form";
 
 import { QuestionModel, UseTestQuestionListReturn } from "./types";
 
-import { useFindTestByIdQuery } from "~graphql-api";
+import {
+  FindTestByIdDocument,
+  useFindTestByIdQuery,
+  useUpdateQuestionMutation,
+} from "~graphql-api";
 
 const DEFAULT_VALUES: QuestionModel = {
   questions: [],
@@ -14,11 +19,13 @@ const DEFAULT_VALUES: QuestionModel = {
 
 const useTestQuestionList = (): UseTestQuestionListReturn => {
   const { query } = useRouter();
-  const { data, refetch } = useFindTestByIdQuery({
+  const { data } = useFindTestByIdQuery({
     variables: {
       findTestByIdId: query.testId as string,
     },
   });
+
+  const [submitAnswer, { loading }] = useUpdateQuestionMutation();
 
   const test = data?.findTestById;
   const form = useForm({
@@ -29,6 +36,31 @@ const useTestQuestionList = (): UseTestQuestionListReturn => {
     control: form.control,
     name: "questions",
   });
+
+  const handleSubmit = async (selectedAnswer: string, questionId: string) => {
+    const answeredIds = [];
+
+    answeredIds.push(selectedAnswer);
+
+    if (!answeredIds.length) {
+      toast.error("Please select an answer");
+      return;
+    }
+
+    await submitAnswer({
+      variables: {
+        updateQuestionInput: {
+          id: questionId,
+          answeredIds,
+        },
+      },
+      awaitRefetchQueries: true,
+      refetchQueries: [FindTestByIdDocument],
+      onCompleted: () => {
+        toast.success("Answer submitted");
+      },
+    });
+  };
 
   useEffect(() => {
     if (test) {
@@ -52,13 +84,11 @@ const useTestQuestionList = (): UseTestQuestionListReturn => {
         })
       );
 
-      console.log({ questions });
-
       form.setValue("questions", questions);
     }
   }, [form, test]);
 
-  return { form, fieldArray, test, refetch };
+  return { form, fieldArray, test, handleAnswer: handleSubmit, loading };
 };
 
 export default useTestQuestionList;

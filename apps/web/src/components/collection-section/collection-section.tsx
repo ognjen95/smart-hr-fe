@@ -10,6 +10,7 @@ type CollectionSectionProps = {
   data: GLassCardProps[] | []
   buttons: ReactNode[]
   onCreate: () => void
+  index?: number
 }
 
 const CollectionSection: FC<CollectionSectionProps> = ({
@@ -17,6 +18,7 @@ const CollectionSection: FC<CollectionSectionProps> = ({
   data = [],
   buttons,
   onCreate,
+  index,
 }) => {
   const { push } = useRouter()
 
@@ -30,12 +32,13 @@ const CollectionSection: FC<CollectionSectionProps> = ({
         button={button && {
           text: button?.text,
           onClick: () => { if (button.url) push(button.url) }
-        }} />
+        }}
+      />
     ))
   ), [data, push])
 
   return (
-    <Paper>
+    <Paper index={index}>
       <div className='flex justify-between items-center'>
         <h1 className='mb-4 font-bold text-xl'>{title}</h1>
         <div className='mb-2 flex items-center'>

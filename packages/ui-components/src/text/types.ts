@@ -5,6 +5,7 @@ export type TextVariant =
   | "heading4"
   | "heading4Small"
   | "regularBodyLight"
+  | "regularBodyLightBolded"
   | "regularBodyDark"
   | "regularBodyDarkBolded"
   | "smallBodyLight"

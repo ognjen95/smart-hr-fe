@@ -34,3 +34,9 @@ mutation UpdateQuestion($updateQuestionInput: UpdateQuestionInput!) {
     id
   }
 }
+
+mutation UpdateTest($updateTestInput: UpdateTestInput!) {
+  updateTest(updateTestInput: $updateTestInput) {
+    id
+  }
+}

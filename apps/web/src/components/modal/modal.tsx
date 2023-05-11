@@ -64,10 +64,11 @@ const Modal: FCWithChildren<ModalProps> = ({
               }}
               exit={{ scale: 0.0 }}
               transition={{ duration: 0.2 }}
-              className={clsx("daisy-modal-box", WIDTH_CLASS_MAPPER[size], 'bg-primary')}
+              className={clsx("daisy-modal-box", WIDTH_CLASS_MAPPER[size], 'bg-primary', "rounded-[2rem] p-8")}
             >
-              <h3 className={clsx("font-bold", "text-2xl", "mb-4 text-accent-content")}> {title}</h3>
-              {description && <p className="daisy-py-4 text-accent-content">{description}</p>}
+
+              <h3 className={clsx("font-bold", "text-2xl", "text-accent-content mb-5")}> {title}</h3>
+              {description && <p className="daisy-py-4 text-accent-content text-lg">{description}</p>}
               {children}
               <div className="daisy-modal-action mt-10">
                 {leftButtonText && (

@@ -41,7 +41,7 @@ const DrawerRight: FCWithChildren<DrawerRightProps> = ({
                 animate={{ x: 0 }}
                 transition={{ duration: 0.05 }}
                 exit={{ x: '100%', transition: { duration: 0.2 } }}
-                className="daisy-menu w-1/3 rounded-l-2xl overflow-hidden bg-primary-focus">
+                className="daisy-menu w-1/3 rounded-l-[2rem] overflow-hidden bg-primary-focus">
                 <div
                   className="flex flex-col overflow-y-auto">
                   <div className="flex justify-start absolute top-0 right-0 left-0 p-4 border-primary bg-primary-focus border-b-2 gap-4">
