@@ -1,9 +1,7 @@
-import { useFieldArray } from 'react-hook-form';
+import useForm from "~hooks/use-form";
 
-import useForm from '~hooks/use-form';
-
-import { DEFAULT_VALUES, VALIDATION_SCHEMA } from '../constants';
-import { UseCreateTestForm, UseCreateTestFormReturn } from '../types';
+import { DEFAULT_VALUES, VALIDATION_SCHEMA } from "../constants";
+import { UseCreateTestForm, UseCreateTestFormReturn } from "../types";
 
 const useCreateTestForm: UseCreateTestForm = (): UseCreateTestFormReturn => {
   const form = useForm({

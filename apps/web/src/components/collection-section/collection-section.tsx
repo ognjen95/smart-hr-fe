@@ -44,7 +44,7 @@ const CollectionSection: FC<CollectionSectionProps> = ({
       </div>
       <div className="grid grid-cols-4 gap-5">
         {cards}
-        <div onClick={() => onCreate()} className='h-80 bg-base-200 p-5 glass rounded-xl  border-2 border-base-content flex flex-col justify-center items-center cursor-pointer hover:text-accent-content ease-in-out duration-100'>
+        <div onClick={onCreate} className='h-80 bg-base-200 p-5 glass rounded-xl  border-2 border-base-content flex flex-col justify-center items-center cursor-pointer hover:text-accent-content ease-in-out duration-100'>
           <p className='font-bold text-6xl'>+</p>
           <p className='font-bold text-2xl text-center'>New {title.slice(0, -1)}</p>
         </div>

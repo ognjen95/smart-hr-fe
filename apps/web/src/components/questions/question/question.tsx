@@ -1,45 +1,91 @@
-import { FC, ReactNode, useCallback, useMemo } from 'react'
-import { CheckboxCard, Input, Paper, RadioButtonCard } from 'ui-components'
+import { ReactNode, useCallback, useMemo } from 'react'
+import { Control, FieldArrayWithId, FieldValues, useFieldArray } from 'react-hook-form'
+import { Loader, Paper, } from 'ui-components'
 
+import CheckboxCard from '~components/form/fields/checkbox-field/checkbox-card-field'
+import InputField from '~components/form/fields/input-field'
+import { QuestionModel } from '~features/tests/preview-test/types'
+import { UseFormControllerOptions } from '~hooks/use-form-controller'
 
-import { AnswerEntity } from '~graphql-api'
-
-
-export type QuestionProps = {
-  question: string
-  answers: AnswerEntity[]
+export type TestQuestionProps<
+  TFormValues extends FieldValues = FieldValues
+> = {
+  isLoading?: boolean,
+  control: Control<QuestionModel>;
+  text: string,
   buttons?: ReactNode[]
+  index: number
   answerType?: 'text' | 'multiple' | 'single' | null | string
-}
+  onSubmit: (answerId: string) => void
+} & UseFormControllerOptions<TFormValues>;
 
-const Question: FC<QuestionProps> = ({ question, answers, buttons, answerType = 'single' }) => {
+const TestQuestion = ({
+  buttons,
+  answerType = 'single',
+  control,
+  text,
+  index,
+  onSubmit,
+  isLoading,
+}: TestQuestionProps<QuestionModel>) => {
+  const fieldArrayAnswers = useFieldArray({
+    control,
+    name: `questions.${index}.answers`,
+  });
+
+  const handleUpdateForm = useCallback((
+    answer: FieldArrayWithId<QuestionModel, `questions.${number}.answers`, "id">,
+    idx: number
+  ) => {
+    if ((answerType === 'single' && answer.answered) || isLoading) return
+    onSubmit(answer.answerId)
+    fieldArrayAnswers.update(idx, {
+      ...answer,
+      answered: !answer.answered,
+    })
+  }, [answerType, fieldArrayAnswers, isLoading, onSubmit])
+
   const answersFactory = useMemo(() => (
-    answers.map((answer) => {
-      if (answerType === 'text') {
-        return (
-          <Input
+    <>
+      {fieldArrayAnswers.fields.map((answer, idx) => {
+        if (answerType === 'text') return (
+          <InputField
+            fieldName={`questions.${index}.answers.${idx}.answered`}
+            control={control}
             key={answer.id}
           />
         )
-      }
-      if (answerType === 'multiple') {
         return (
           <CheckboxCard
+            fieldName={`questions.${index}.answers.${idx}.answered`}
+            control={control}
             key={answer.id}
-            name={answer.id}
-            text={answer.text} />
+            name={`questions.${index}.answers.${idx}.answerId`}
+            text={answer.text}
+            checked={answer.answered}
+            onClick={() => handleUpdateForm(answer, idx)}
+          />
         )
-      }
-      return <RadioButtonCard key={answer.id} text={answer.text} />
-    })
-  ), [answerType, answers])
+      })}
+    </>
+  ), [answerType, control, fieldArrayAnswers.fields, handleUpdateForm, index])
 
   return (
     <Paper>
-      <div className="p-5">
-        <div className="mb-7">
-          <h1 className="text-4xl">{question}</h1>
-          {/* {isMultipleAnswers && <p>( Multiple correct answers )</p>} */}
+      <div className="p-5 relative">
+        <div className="mb-7 flex justify-between gap-2 items-center">
+          <div>
+            <h1 className="text-4xl">
+              {text}
+            </h1>
+            {answerType === 'multiple' &&
+              (
+                <p>( Multiple correct answers )</p>
+              )}
+          </div>
+          <div>
+            <Loader isLoading={isLoading} />
+          </div>
         </div>
         {answersFactory}
         {buttons && (
@@ -48,8 +94,8 @@ const Question: FC<QuestionProps> = ({ question, answers, buttons, answerType = 
           </div>
         )}
       </div>
-    </Paper>
+    </Paper >
   )
 }
 
-export default Question
+export default TestQuestion

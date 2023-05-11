@@ -1,7 +1,10 @@
 export const generateId = (): string => {
-  if (typeof window !== 'undefined') {
-    return window.crypto?.randomUUID();
+  let id = "";
+  if (typeof window !== "undefined") {
+    id = window.crypto?.randomUUID();
   }
-  const id = Math.random().toString(36).substring(2, 15);
-  return id.toString();
+  if (!id) {
+    id = Math.random().toString(36).substring(2, 15).toString();
+  }
+  return id;
 };

@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { toast } from 'react-toastify'
+import { generateId } from 'src/helpers/generateId'
 
 import useToggle from '~hooks/use-toggle'
 
@@ -22,6 +23,11 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
   })) ?? [], [questionGroup])
 
   const onSubmit = useCallback((data: CreateQuestionFormModel) => {
+    const answers = data.answers.map((answer) => ({
+      ...answer,
+      id: generateId()
+    }))
+
     createQuestion({
       onError: ({ graphQLErrors: [{ message }] }) => {
         close()
@@ -35,7 +41,7 @@ const useCreateQuestion: UseCreateQuestion = (): UseCreateQuestionReturn => {
       variables: {
         createQuestionInput: {
           text: data.text,
-          answers: data.answers,
+          answers,
           points: data.points,
           questionGroup: data.questionGroup || undefined
         }

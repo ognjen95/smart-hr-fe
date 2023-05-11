@@ -12,7 +12,7 @@ const CheckboxCard: FC<CheckboxCardProps> = ({ text, name }) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-primary p-1 px-5 rounded-full mb-4 shadow-md shadow-neutral hover:opacity-90 active:scale-x-90 ease-in-out duration-200 cursor-pointer">
+      className="hover:bg-primary bg-slate-700 p-1 px-5 rounded-full mb-4 shadow-md shadow-neutral hover:opacity-90 active:scale-x-90 ease-in-out duration-200 cursor-pointer">
       <div className='flex justify-between items-center p-4'>
         <p className='text-xl text-secondary-content'>
           {text}

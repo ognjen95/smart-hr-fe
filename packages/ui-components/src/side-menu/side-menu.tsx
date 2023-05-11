@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-export type Item ={
+export type Item = {
   icon: ReactNode,
   name: string,
   onClick: () => void,
@@ -23,12 +23,12 @@ const SideMenu: FC<SideMenuProps> = ({ items }) => (
       </li>
       {items.map(({ name, onClick, icon, isActive }) => (
         <li key={name} className='my-1'>
-          <a className={`p-[.5rem] my-1 flex align-items justify-start rounded-full active:scale-90 ease-in-out duration-200 ${isActive ? 'bg-gradient-to-r from-primary-focus to-primary text-white border-primary' : ''}`} onClick={onClick}>
-            <div className="p-1 rounded-full shadow shadow-primary-focus bg-primary box-border">
+          <a className="p-[.5rem] my-1 flex align-items justify-start rounded-full active:scale-90 ease-in-out duration-200" onClick={onClick}>
+            <div className={`p-1.5 rounded-full shadow border-[1px] ${isActive ? 'bg-gradient-to-r from-primary-focus to-primary border-primary-focus' : ''} box-border`}>
               {icon}
             </div>
             <div>
-              <p className='text-lg'>
+              <p className={`text-lg ${isActive ? 'text-white' : ''}`}>
                 {name}
               </p>
             </div>

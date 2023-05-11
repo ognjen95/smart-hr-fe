@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
-import { Button, Input, Modal, RadioButtonCard } from 'ui-components'
+import { Button, Input, Modal, } from 'ui-components'
+
+import RadioButtonCard from '~components/form/fields/radio-field/radio-card-field'
 
 export type CreateQuestionModalProps = {
   isOpen: boolean
@@ -23,15 +25,15 @@ const CreateQuestionModal: FC<CreateQuestionModalProps> = ({ isOpen, onClose }) 
     <div className="mb-2">
       <h1 className="text-accent-content text-lg mb-4">2. Select one of answer types </h1>
       <div className="grid grid-cols-3 gap-3">
-        <RadioButtonCard text="Single choice" />
+        {/* <RadioButtonCard text="Single choice" />
         <RadioButtonCard text="Multiple choices" />
-        <RadioButtonCard text="Write Answer" />
+        <RadioButtonCard text="Write Answer" /> */}
       </div>
     </div>
 
     <div className="mb-2">
       <h1 className="text-accent-content text-lg">3. Write answers</h1>
-      {Array.from({ length: 3}).map((_, i) => (
+      {Array.from({ length: 3 }).map((_, i) => (
         <div key={i} className="grid grid-cols-7 gap-2">
           <div className="col-span-5">
             <Input label='Answer' />

@@ -42,10 +42,7 @@ const DrawerRight: FCWithChildren<DrawerRightProps> = ({
                 transition={{ duration: 0.05 }}
                 exit={{ x: '100%', transition: { duration: 0.2 } }}
                 className="daisy-menu w-1/3 rounded-l-2xl overflow-hidden bg-primary-focus">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: .5 }}
+                <div
                   className="flex flex-col overflow-y-auto">
                   <div className="flex justify-start absolute top-0 right-0 left-0 p-4 border-primary bg-primary-focus border-b-2 gap-4">
                     <h1 className="text-2xl font-bold">{title}</h1>
@@ -56,7 +53,7 @@ const DrawerRight: FCWithChildren<DrawerRightProps> = ({
                   <div className="flex justify-end absolute bottom-0 right-0 left-0 p-4 border-primary bg-primary-focus border-t-2 gap-4 z-50">
                     {actionButtons}
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
             </div>
           </div>

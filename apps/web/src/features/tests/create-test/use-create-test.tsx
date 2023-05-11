@@ -15,7 +15,7 @@ const useCreateTest = () => {
 
   const onSubmit = useCallback(async (data: CreateTestModel) => {
     await createTest({
-      awaitRefetchQueries: true,
+      fetchPolicy: 'no-cache',
       refetchQueries: [FindAllTestsDocument],
       onError: () => {
         toast.error('Something went wrong')

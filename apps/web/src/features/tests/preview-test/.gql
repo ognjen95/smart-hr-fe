@@ -28,3 +28,9 @@ query FindTestById($findTestByIdId: String!) {
     timeLimit
   }
 }
+
+mutation UpdateQuestion($updateQuestionInput: UpdateQuestionInput!) {
+  updateQuestion(updateQuestionInput: $updateQuestionInput) {
+    id
+  }
+}

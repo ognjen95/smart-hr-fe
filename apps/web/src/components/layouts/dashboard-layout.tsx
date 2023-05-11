@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { ReactNode, memo, useMemo } from 'react'
 import { Navbar, SideMenu } from 'ui-components'
 import { FCWithChildren } from 'ui-components/src/common/types'
-import { IconSize, IconType } from 'ui-components/src/icon/enums'
+import { IconType } from 'ui-components/src/icon/enums'
 import Icon from 'ui-components/src/icon/icon'
 
 export type BreadCrumb = {
@@ -28,7 +28,7 @@ const DashboardLayout: FCWithChildren<DashboardLayoutProps> = ({ children, pageN
     },
     {
       name: 'Employees',
-      icon: <Icon type={IconType.AVATAR} fill='whtie'/>,
+      icon: <Icon type={IconType.AVATAR} fill='whtie' />,
       onClick: () => { push('/company/employees') },
       isActive: asPath.includes('/company/employees')
     },
